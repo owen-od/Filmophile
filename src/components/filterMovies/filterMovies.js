@@ -37,7 +37,7 @@ const ratings = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function FilterMovies() {
   return (
     <div>
-      <Accordion>
+      <Accordion sx={{ minWidth: "280px" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -91,7 +91,7 @@ function FilterMovies() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ mt: 1 }}>
+      <Accordion sx={{ mt: 1, minWidth: "280px", }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
