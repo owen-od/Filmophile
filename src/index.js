@@ -125,8 +125,8 @@ const App = () => {
     //<LoginPage />
     //<RegisterPage />
     //<TopMoviesPage movies={movies} />
-    <UserPage movies={movies} />
-    //<SearchMoviesPage movies={movies}/>
+    //<UserPage movies={movies} />
+    <SearchMoviesPage movies={movies}/>
   );
 };
 
