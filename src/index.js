@@ -120,10 +120,10 @@ const cast = [
 const App = () => {
   console.log(cast);
   return (
-    //<HomePage movies={movies} />
+    <HomePage movies={movies} />
     //<MovieDetailsPage movie={sample} cast={cast} />
     //<LoginPage />
-    <RegisterPage />
+    //<RegisterPage />
     //<TopMoviesPage movies={movies} />
     //<UserPage movies={movies} />
     //<SearchMoviesPage movies={movies}/>
