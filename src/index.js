@@ -124,8 +124,8 @@ const App = () => {
     //<MovieDetailsPage movie={sample} cast={cast} />
     //<LoginPage />
     //<RegisterPage />
-    <TopMoviesPage movies={movies} />
-    //<UserPage movies={movies} />
+    //<TopMoviesPage movies={movies} />
+    <UserPage movies={movies} />
     //<SearchMoviesPage movies={movies}/>
   );
 };
