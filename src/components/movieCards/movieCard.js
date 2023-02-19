@@ -1,15 +1,16 @@
-import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Card from '@mui/joy/Card';
-import IconButton from '@mui/joy/IconButton';
-import Typography from '@mui/joy/Typography';
+import * as React from "react";
+import AspectRatio from "@mui/joy/AspectRatio";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import Card from "@mui/joy/Card";
+import IconButton from "@mui/joy/IconButton";
+import Typography from "@mui/joy/Typography";
 //import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import '@fontsource/public-sans';
-import { CssVarsProvider } from '@mui/joy/styles';
-import Grid from '@mui/material/Grid';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import "@fontsource/public-sans";
+import { CssVarsProvider } from "@mui/joy/styles";
+import Grid from "@mui/material/Grid";
+import { Link } from "react-router-dom";
 
 export default function MovieCard(movie) {
   return (
@@ -68,12 +69,15 @@ export default function MovieCard(movie) {
               {movie.movie.release_date}
             </Typography>
           </div>
+
           <Button
+            component={Link}
+            to={`/movies/${movie.movie.id}`}
             variant="outlined"
             size="sm"
             color="primary"
             aria-label="Explore Bahamas Islands"
-            sx={{ ml: "auto", fontWeight: 600 , backgroundColor: "secondary"}}
+            sx={{ ml: "auto", fontWeight: 600, backgroundColor: "secondary" }}
           >
             More info
           </Button>

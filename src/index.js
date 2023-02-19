@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import HomePage from "./pages/homePage";
 import MovieDetailsPage from "./pages/movieDetailsPage";
@@ -8,7 +7,7 @@ import RegisterPage from "./pages/registerPage";
 import TopMoviesPage from "./pages/topMoviesPage";
 import UserPage from "./pages/userPage";
 import SearchMoviesPage from "./pages/searchMoviesPage";
-//import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
@@ -134,15 +133,19 @@ const App = () => {
   console.log(cast);
   return (
     <QueryClientProvider client={queryClient}>
-    
-        <HomePage />
-        {/*<MovieDetailsPage movie={sample} cast={cast} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/movies/:id" element={<MovieDetailsPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+          {/*<MovieDetailsPage movie={sample} cast={cast} />
     //<LoginPage />
     //<RegisterPage />
     //<TopMoviesPage movies={movies} />
     //<UserPage movies={movies} />
     //<SearchMoviesPage movies={movies}/> */}
-     
+        </Routes>
+      </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
