@@ -8,6 +8,19 @@ import RegisterPage from "./pages/registerPage";
 import TopMoviesPage from "./pages/topMoviesPage";
 import UserPage from "./pages/userPage";
 import SearchMoviesPage from "./pages/searchMoviesPage";
+//import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 360000,
+      refetchInterval: 360000,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const sample = {
   adult: false,
@@ -120,13 +133,18 @@ const cast = [
 const App = () => {
   console.log(cast);
   return (
-    <HomePage movies={movies} />
-    //<MovieDetailsPage movie={sample} cast={cast} />
+    <QueryClientProvider client={queryClient}>
+    
+        <HomePage />
+        {/*<MovieDetailsPage movie={sample} cast={cast} />
     //<LoginPage />
     //<RegisterPage />
     //<TopMoviesPage movies={movies} />
     //<UserPage movies={movies} />
-    //<SearchMoviesPage movies={movies}/>
+    //<SearchMoviesPage movies={movies}/> */}
+     
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 
