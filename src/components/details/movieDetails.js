@@ -23,7 +23,6 @@ const MovieDetails = ({ movie }) => {
 
   return (
     <Box
-      marginTop="50px"
       padding="30px 0"
       position="relative"
       sx={{
