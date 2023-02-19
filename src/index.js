@@ -7,6 +7,7 @@ import RegisterPage from "./pages/registerPage";
 import TopMoviesPage from "./pages/topMoviesPage";
 import UserPage from "./pages/userPage";
 import SearchMoviesPage from "./pages/searchMoviesPage";
+import PopularMoviesPage from "./pages/popularMoviesPage";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -139,6 +140,7 @@ const App = () => {
         <Routes>
           <Route path="/movies/:id" element={<MovieDetailsPage />} />
           <Route path="/movies/top" element={<TopMoviesPage />} />
+          <Route path="/movies/popular" element={<PopularMoviesPage />} />
          {/*<Route path="/movies/search" element={<SearchMoviesPage />} /> */}
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
