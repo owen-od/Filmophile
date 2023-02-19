@@ -7,6 +7,7 @@ import MoviePagination from "../components/pagination/pagination";
 import { useQuery } from "react-query";
 import { CircularProgress } from "@mui/material";
 import { getTopMovies } from "../api/movie-api";
+import "@fontsource/righteous";
 
 const TopMoviesPage = (props) => {
   //const movies = props.movies;
@@ -39,7 +40,7 @@ const TopMoviesPage = (props) => {
 
   return (
     <>
-      <Typography variant="h2" component="h2">
+      <Typography variant="h2" component="h2" fontFamily="Righteous">
         Top Movies
       </Typography>
       <Grid container spacing={1}>
