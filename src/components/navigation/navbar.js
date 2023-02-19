@@ -12,11 +12,21 @@ import MenuItem from "@mui/material/MenuItem";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import "@fontsource/pacifico";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate, NavLink, Link } from "react-router-dom";
 
-const settings = ["Account", "Logout"];
-const movies = ["Top", "Upcoming", "Popular"];
+const accountOptions = [
+  { label: "Account", path: "/account" },
+  { label: "Login", path: "/login" },
+];
+
+const movieOptions = [
+  { label: "Top", path: "/movies/top" },
+  { label: "Upcoming", path: "/movies/upcoming" },
+  { label: "Popular", path: "/movies/popular" },
+];
 
 function NavBar() {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElMovies, setAnchorElMovies] = React.useState(null);
@@ -96,9 +106,11 @@ function NavBar() {
               display: { xs: "block", md: "none" },
             }}
           >
-            {movies.map((movie) => (
-              <MenuItem key={movie} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{movie}</Typography>
+            {movieOptions.map((movie) => (
+              <MenuItem>
+                <NavLink key={movie.label} to={movie.path}>
+                  {movie.label}
+                </NavLink>
               </MenuItem>
             ))}
           </Menu>
@@ -154,9 +166,11 @@ function NavBar() {
               open={Boolean(anchorElMovies)}
               onClose={handleCloseMovieMenu}
             >
-              {movies.map((movie) => (
-                <MenuItem key={movie} onClick={handleCloseMovieMenu}>
-                  <Typography textAlign="center">{movie}</Typography>
+              {movieOptions.map((movie) => (
+                <MenuItem>
+                  <NavLink key={movie.label} to={movie.path}>
+                    {movie.label}
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -164,9 +178,11 @@ function NavBar() {
 
           <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
             <Tooltip title="Search">
-              <IconButton sx={{ p: 0, mr: 2, color: "white" }}>
-                <SearchIcon />
-              </IconButton>
+              <MenuItem component={Link} to={"/movies/search"}>
+                <IconButton sx={{ p: 0, mr: 2, color: "white" }}>
+                  <SearchIcon />
+                </IconButton>
+              </MenuItem>
             </Tooltip>
           </Box>
 
@@ -192,9 +208,11 @@ function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {accountOptions.map((option) => (
+                <MenuItem>
+                  <NavLink key={option.label} to={option.path}>
+                    {option.label}
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>

@@ -10,6 +10,7 @@ import SearchMoviesPage from "./pages/searchMoviesPage";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import NavBar from "./components/navigation/navbar";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -134,9 +135,11 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <NavBar/>
         <Routes>
           <Route path="/movies/:id" element={<MovieDetailsPage />} />
           <Route path="/movies/top" element={<TopMoviesPage />} />
+         {/*<Route path="/movies/search" element={<SearchMoviesPage />} /> */}
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
           {/*<MovieDetailsPage movie={sample} cast={cast} />
