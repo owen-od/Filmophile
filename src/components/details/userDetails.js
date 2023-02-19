@@ -5,7 +5,7 @@ import MovieCarousel from "../carousels/movieCarousel";
 const UserDetails = () => {
   
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} mt={2}>
       <Grid item align="center" xs={12}>
         <Typography variant="h4" component="p">
           Username@user.com

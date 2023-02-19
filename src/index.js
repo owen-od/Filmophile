@@ -8,6 +8,7 @@ import TopMoviesPage from "./pages/topMoviesPage";
 import UserPage from "./pages/userPage";
 import SearchMoviesPage from "./pages/searchMoviesPage";
 import PopularMoviesPage from "./pages/popularMoviesPage";
+import UpcomingMoviesPage from "./pages/upcomingMovies";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -141,13 +142,14 @@ const App = () => {
           <Route path="/movies/:id" element={<MovieDetailsPage />} />
           <Route path="/movies/top" element={<TopMoviesPage />} />
           <Route path="/movies/popular" element={<PopularMoviesPage />} />
+          <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+          <Route path="account" element={<UserPage movies={movies} />} />
          {/*<Route path="/movies/search" element={<SearchMoviesPage />} /> */}
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
           {/*<MovieDetailsPage movie={sample} cast={cast} />
     //<LoginPage />
     //<RegisterPage />
-    //<TopMoviesPage movies={movies} />
     //<UserPage movies={movies} />
     //<SearchMoviesPage movies={movies}/> */}
         </Routes>
