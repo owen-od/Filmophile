@@ -4,9 +4,38 @@ import Footer from "../components/siteFooter/footer";
 import FilterMovies from "../components/filterMovies/filterMovies";
 import MovieCard from "../components/movieCards/movieCard";
 import MoviePagination from "../components/pagination/pagination";
+import { useQuery } from "react-query";
+import { CircularProgress } from "@mui/material";
+import { getTopMovies } from "../api/movie-api";
 
 const TopMoviesPage = (props) => {
-  const movies = props.movies;
+  //const movies = props.movies;
+
+  const {
+    data: topData,
+    error,
+    isLoading,
+    isError,
+  } = useQuery(["topRated", { page: 1 }], getTopMovies);
+
+  if (isLoading) {
+    return (
+      <div sx={{ display: "flex", justifyContent: "center" }}>
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <span>
+        <h1>There was an error </h1>
+        {error.map((e) => (e ? <h1>Error Message: {e.message}</h1> : null))}
+      </span>
+    );
+  }
+
+  const movies = topData.results;
 
   return (
     <>

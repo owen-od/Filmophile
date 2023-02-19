@@ -136,6 +136,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/movies/:id" element={<MovieDetailsPage />} />
+          <Route path="/movies/top" element={<TopMoviesPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
           {/*<MovieDetailsPage movie={sample} cast={cast} />
