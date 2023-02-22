@@ -1,11 +1,25 @@
 import React from "react";
-import { TextField, Grid, Button, InputAdornment } from "@mui/material";
+import {
+  TextField,
+  Grid,
+  Button,
+  InputAdornment,
+  Typography,
+} from "@mui/material";
+import { useForm } from "react-hook-form";
 
-const MovieSearch = () => {
+const MovieSearch = (props) => {
+  const { register, handleSubmit, errors } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data.search)
+    props.searchMovies(data.search);
+  };
+
   return (
     <>
       <Grid item xs={12} style={{ textAlign: "center" }}>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             id="search"
             name="search"
@@ -16,6 +30,7 @@ const MovieSearch = () => {
             color="primary"
             focused
             label="search"
+            //inputRef={register({ required: "Search required" })}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -26,6 +41,11 @@ const MovieSearch = () => {
               ),
             }}
           />
+          {errors.search && (
+            <Typography variant="h6" component="p">
+              {errors.search.message}
+            </Typography>
+          )}
         </form>
       </Grid>
     </>

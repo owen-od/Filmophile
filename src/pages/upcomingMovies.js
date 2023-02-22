@@ -5,18 +5,29 @@ import FilterMovies from "../components/filterMovies/filterMovies";
 import MovieCard from "../components/movieCards/movieCard";
 import MoviePagination from "../components/pagination/pagination";
 import { useQuery } from "react-query";
+import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { getUpcomingMovies } from "../api/movie-api";
 import "@fontsource/righteous";
 
 const UpcomingMoviesPage = () => {
+  const cachedPage = parseInt(localStorage.getItem("upcomingMoviesPage"));
+  let defaultPage = 1;
+  //const movies = props.movies;
 
-  const {
-    data: upcomingData,
-    error,
-    isLoading,
-    isError,
-  } = useQuery(["Upcoming", { page: 1 }], getUpcomingMovies);
+  if (cachedPage) {
+    defaultPage = cachedPage;
+  }
+
+  const [pageNumber, setPageNumber] = useState(defaultPage);
+
+  const { data, error, isLoading, isError } = useQuery(
+    ["Upcoming", pageNumber],
+    () => getUpcomingMovies(pageNumber),
+    {
+      keepPreviousData: true,
+    }
+  );
 
   if (isLoading) {
     return (
@@ -35,7 +46,13 @@ const UpcomingMoviesPage = () => {
     );
   }
 
-  const movies = upcomingData.results;
+  const movies = data.results;
+
+  const pageChange = (value) => {
+    setPageNumber(value);
+    console.log("Change upcoming movies page number to " + value);
+    localStorage.setItem("upcomingMoviesPage", value);
+  };
 
   return (
     <>
@@ -70,7 +87,10 @@ const UpcomingMoviesPage = () => {
           ))}
           <Grid item xs={12} sx={{ mt: 5 }}>
             <Box display="flex" justifyContent="center" alignItems="center">
-              <MoviePagination />
+              <MoviePagination
+                pageNumber={pageNumber}
+                pageChange={pageChange}
+              />
             </Box>
           </Grid>
         </Grid>

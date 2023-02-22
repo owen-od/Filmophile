@@ -48,9 +48,7 @@ export const getTopMovies = (pageNumber) => {
     });
 };
 
-export const getUpcomingMovies = (args) => {
-  const [, idPart] = args.queryKey;
-  const { pageNumber } = idPart;
+export const getUpcomingMovies = (pageNumber) => {
   return fetch(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageNumber}`
   )
