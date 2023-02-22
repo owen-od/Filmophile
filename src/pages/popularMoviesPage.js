@@ -5,18 +5,29 @@ import FilterMovies from "../components/filterMovies/filterMovies";
 import MovieCard from "../components/movieCards/movieCard";
 import MoviePagination from "../components/pagination/pagination";
 import { useQuery } from "react-query";
+import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { getPopularMovies } from "../api/movie-api";
 import "@fontsource/righteous";
 
 const PopularMoviesPage = () => {
+  const cachedPage = parseInt(localStorage.getItem("popularMoviesPage"));
+  let defaultPage = 1;
+  //const movies = props.movies;
 
-  const {
-    data: popularData,
-    error,
-    isLoading,
-    isError,
-  } = useQuery(["Popular", { page: 1 }], getPopularMovies);
+  if (cachedPage) {
+    defaultPage = cachedPage;
+  }
+
+  const [pageNumber, setPageNumber] = useState(defaultPage);
+
+  const { data, error, isLoading, isError } = useQuery(
+    ["Popular", pageNumber],
+    () => getPopularMovies(pageNumber),
+    {
+      keepPreviousData: true,
+    }
+  );
 
   if (isLoading) {
     return (
@@ -35,7 +46,13 @@ const PopularMoviesPage = () => {
     );
   }
 
-  const movies = popularData.results;
+  const movies = data.results;
+
+  const pageChange = (value) => {
+    setPageNumber(value);
+    console.log("Change popular movies page number to " + value);
+    localStorage.setItem("popularMoviesPage", value);
+  };
 
   return (
     <>
@@ -70,7 +87,10 @@ const PopularMoviesPage = () => {
           ))}
           <Grid item xs={12} sx={{ mt: 5 }}>
             <Box display="flex" justifyContent="center" alignItems="center">
-              <MoviePagination />
+              <MoviePagination
+                pageNumber={pageNumber}
+                pageChange={pageChange}
+              />
             </Box>
           </Grid>
         </Grid>

@@ -12,7 +12,7 @@ export default function MoviePagination({ pageNumber, pageChange }) {
     <>
     <Stack spacing={2}>
       <Pagination
-        count={100}
+        count={50}
         color="primary"
         size="large"
         page={pageNumber}
