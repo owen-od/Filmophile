@@ -7,17 +7,27 @@ import MoviePagination from "../components/pagination/pagination";
 import { useQuery } from "react-query";
 import { CircularProgress } from "@mui/material";
 import { getTopMovies } from "../api/movie-api";
+import { useState } from "react";
 import "@fontsource/righteous";
 
 const TopMoviesPage = (props) => {
+  const cachedPage = parseInt(localStorage.getItem("topMoviesPage"));
+  let defaultPage = 1;
   //const movies = props.movies;
 
-  const {
-    data: topData,
-    error,
-    isLoading,
-    isError,
-  } = useQuery(["topRated", { page: 1 }], getTopMovies);
+  if (cachedPage) {
+    defaultPage = cachedPage;
+  }
+
+  const [pageNumber, setPageNumber] = useState(defaultPage);
+
+  const { data, error, isLoading, isError } = useQuery(
+    ["topRated", pageNumber],
+    () => getTopMovies(pageNumber),
+    {
+      keepPreviousData: true,
+    }
+  );
 
   if (isLoading) {
     return (
@@ -36,7 +46,13 @@ const TopMoviesPage = (props) => {
     );
   }
 
-  const movies = topData.results;
+  const movies = data.results;
+
+  const pageChange = (value) => {
+    setPageNumber(value);
+    console.log("Change top rated movies page number to " + value);
+    localStorage.setItem("topMoviesPage", value);
+  };
 
   return (
     <>
@@ -71,7 +87,7 @@ const TopMoviesPage = (props) => {
           ))}
           <Grid item xs={12} sx={{ mt: 5 }}>
             <Box display="flex" justifyContent="center" alignItems="center">
-              <MoviePagination />
+              <MoviePagination pageNumber={pageNumber} pageChange={pageChange}/>
             </Box>
           </Grid>
         </Grid>
