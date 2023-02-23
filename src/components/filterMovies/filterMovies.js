@@ -12,29 +12,31 @@ import {
   InputLabel,
   Box,
 } from "@mui/material";
-
-const genres = [
-  {
-    id: 28,
-    name: "Action",
-  },
-  {
-    id: 12,
-    name: "Adventure",
-  },
-  {
-    id: 16,
-    name: "Animation",
-  },
-  {
-    id: 35,
-    name: "Comedy",
-  },
-];
-
-const ratings = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import { getGenres } from "../../api/movie-api";
+import { useQuery } from "react-query";
+import { CircularProgress } from "@mui/material";
 
 function FilterMovies() {
+
+  const { data, error, isLoading, isError } = useQuery("genres", getGenres);
+  const ratings = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  if (isLoading) {
+    return (
+      <div sx={{ display: "flex", justifyContent: "center" }}>
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <h1>{error.message}</h1>;
+  }
+  const genres = data.genres;
+  if (genres[0].name !== "All") {
+    genres.unshift({ id: "0", name: "All" });
+  }
+
   return (
     <div>
       <Accordion sx={{ minWidth: "280px" }}>
