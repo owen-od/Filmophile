@@ -95,9 +95,7 @@ export const getMovies = (args) => {
     });
 };
 
-export const searchMovies = (args) => {
-  const [, idPart] = args.queryKey;
-  let { searchTerm } = idPart;
+export const searchMovies = (searchTerm) => {
   if (!searchTerm) {
     searchTerm = "movie"
   }

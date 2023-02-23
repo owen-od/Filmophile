@@ -30,7 +30,7 @@ const MovieSearch = (props) => {
             color="primary"
             focused
             label="search"
-            //inputRef={register({ required: "Search required" })}
+            {...register("search")}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -41,9 +41,9 @@ const MovieSearch = (props) => {
               ),
             }}
           />
-          {errors.search && (
+          {errors && (
             <Typography variant="h6" component="p">
-              {errors.search.message}
+              {errors.message}
             </Typography>
           )}
         </form>

@@ -137,14 +137,15 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-      <NavBar/>
+        <NavBar />
         <Routes>
           <Route path="/movies/:id" element={<MovieDetailsPage />} />
           <Route path="/movies/top" element={<TopMoviesPage />} />
           <Route path="/movies/popular" element={<PopularMoviesPage />} />
           <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+          <Route path="/movies/search" element={<SearchMoviesPage />} />
           <Route path="account" element={<UserPage movies={movies} />} />
-         {/*<Route path="/movies/search" element={<SearchMoviesPage />} /> */}
+          {/*<Route path="/movies/search" element={<SearchMoviesPage />} /> */}
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
           {/*<MovieDetailsPage movie={sample} cast={cast} />

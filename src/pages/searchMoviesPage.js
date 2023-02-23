@@ -1,13 +1,42 @@
 import { Grid, Typography, useMediaQuery, Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import Footer from "../components/siteFooter/footer";
 import FilterMovies from "../components/filterMovies/filterMovies";
 import MovieCard from "../components/movieCards/movieCard";
-import MoviePagination from "../components/pagination/pagination"; 
-import MovieSearch from "../components/forms/searchMovies"
+import MoviePagination from "../components/pagination/pagination";
+import MovieSearch from "../components/forms/searchMovies";
+import { searchMovies } from "../api/movie-api";
+import { CircularProgress } from "@mui/material";
 
-const SearchMoviesPage = (props) => {
-  const movies = props.movies;
+const SearchMoviesPage = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const { data, error, isLoading, isError } = useQuery(
+    ["search", searchTerm],
+    () => searchMovies(searchTerm),
+    {
+      keepPreviousData: true,
+    }
+  );
+
+  if (isLoading) {
+    return (
+      <div sx={{ display: "flex", justifyContent: "center" }}>
+        <CircularProgress />
+      </div>
+    );
+  };
+
+  if (isError) {
+    return <h1>{error.message}</h1>;
+  };
+
+  const movies = data.results;
+
+  const searchHandler = (value) => {
+    setSearchTerm(value);
+  };
 
   return (
     <>
@@ -15,7 +44,14 @@ const SearchMoviesPage = (props) => {
         Search Movies
       </Typography>
       <Grid container spacing={1}>
-        <Grid item xs={12} md={3} minHeight="100%" maxWidth="100%" sx={{mb: 3, mt: 3}}>
+        <Grid
+          item
+          xs={12}
+          md={3}
+          minHeight="100%"
+          maxWidth="100%"
+          sx={{ mb: 3, mt: 3 }}
+        >
           <FilterMovies />
         </Grid>
         <Grid
@@ -28,22 +64,12 @@ const SearchMoviesPage = (props) => {
           gap="30px"
           mt={3}
         >
-          <MovieSearch/>
+          <MovieSearch searchMovies={searchHandler} />
           {movies.map((m) => (
             <Grid item key={m.id}>
               <MovieCard key={m.id} movie={m} />
             </Grid>
           ))}
-          <Grid item xs={12} sx={{ mt: 5 }}>
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-
-            >
-              <MoviePagination />
-            </Box>
-          </Grid>
         </Grid>
       </Grid>
       <Footer />
