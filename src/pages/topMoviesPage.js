@@ -11,6 +11,9 @@ import { useState } from "react";
 import "@fontsource/righteous";
 
 const TopMoviesPage = (props) => {
+  const [genreFilter, setGenreFilter] = useState("0");
+  const genreId = Number(genreFilter);
+
   const cachedPage = parseInt(localStorage.getItem("topMoviesPage"));
   let defaultPage = 1;
   //const movies = props.movies;
@@ -48,6 +51,15 @@ const TopMoviesPage = (props) => {
 
   const movies = data.results;
 
+  let displayedMovies = movies
+  .filter((m) => {
+    return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+  })
+
+  const handleChange = (type, value) => {
+   setGenreFilter(value);
+  };
+
   const pageChange = (value) => {
     setPageNumber(value);
     console.log("Change top rated movies page number to " + value);
@@ -68,7 +80,7 @@ const TopMoviesPage = (props) => {
           maxWidth="100%"
           sx={{ mb: 3, mt: 3 }}
         >
-          <FilterMovies />
+          <FilterMovies genreFilter={genreFilter} onUserInput={handleChange} />
         </Grid>
         <Grid
           container
@@ -80,7 +92,7 @@ const TopMoviesPage = (props) => {
           gap="30px"
           mt={3}
         >
-          {movies.map((m) => (
+          {displayedMovies.map((m) => (
             <Grid item key={m.id}>
               <MovieCard key={m.id} movie={m} />
             </Grid>

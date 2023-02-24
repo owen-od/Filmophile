@@ -16,7 +16,7 @@ import { getGenres } from "../../api/movie-api";
 import { useQuery } from "react-query";
 import { CircularProgress } from "@mui/material";
 
-function FilterMovies() {
+function FilterMovies(props) {
 
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
   const ratings = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -36,6 +36,15 @@ function FilterMovies() {
   if (genres[0].name !== "All") {
     genres.unshift({ id: "0", name: "All" });
   }
+
+  const handleChange = (e, type, value) => {
+    e.preventDefault();
+    props.onUserInput(type, value);
+  };
+
+  const handleGenreChange = (e) => {
+    handleChange(e, "genre", e.target.value);
+  };
 
   return (
     <div>
@@ -60,7 +69,7 @@ function FilterMovies() {
           <Box sx={{ minWidth: "250px" }}>
             <FormControl sx={{ minWidth: "250px", marginTop: 1 }}>
               <InputLabel id="genre-label">Genre</InputLabel>
-              <Select labelId="genre-label" id="genre-select" label="genre">
+              <Select labelId="genre-label" id="genre-select" label="genre" value={props.genreFilter} onChange={handleGenreChange}>
                 {genres.map((genre) => {
                   return (
                     <MenuItem key={genre.id} value={genre.id}>
