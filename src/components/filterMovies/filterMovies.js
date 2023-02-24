@@ -52,7 +52,10 @@ function FilterMovies(props) {
 
   const handleTextChange = (e) => {
     handleChange(e, "text", e.target.value);
-    console.log("handling change")
+  };
+
+  const handleSortChange = (e) => {
+    handleChange(e, "sort", e.target.value);
   };
 
   return (
@@ -130,7 +133,8 @@ function FilterMovies(props) {
               labelId="sort-label"
               id="sort-select"
               label="sort option"
-              value=""
+              value={props.movieSorter}
+              onChange={handleSortChange}
             >
               <MenuItem value="title">Title</MenuItem>
               <MenuItem value="release_date">Release Date</MenuItem>
