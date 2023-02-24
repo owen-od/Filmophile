@@ -11,6 +11,9 @@ import { getUpcomingMovies } from "../api/movie-api";
 import "@fontsource/righteous";
 
 const UpcomingMoviesPage = () => {
+  const [genreFilter, setGenreFilter] = useState("0");
+  const genreId = Number(genreFilter);
+
   const cachedPage = parseInt(localStorage.getItem("upcomingMoviesPage"));
   let defaultPage = 1;
   //const movies = props.movies;
@@ -48,6 +51,14 @@ const UpcomingMoviesPage = () => {
 
   const movies = data.results;
 
+  let displayedMovies = movies.filter((m) => {
+    return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+  });
+
+  const handleChange = (type, value) => {
+    setGenreFilter(value);
+  };
+
   const pageChange = (value) => {
     setPageNumber(value);
     console.log("Change upcoming movies page number to " + value);
@@ -68,7 +79,7 @@ const UpcomingMoviesPage = () => {
           maxWidth="100%"
           sx={{ mb: 3, mt: 3 }}
         >
-          <FilterMovies />
+          <FilterMovies genreFilter={genreFilter} onUserInput={handleChange} />
         </Grid>
         <Grid
           container
@@ -80,7 +91,7 @@ const UpcomingMoviesPage = () => {
           gap="30px"
           mt={3}
         >
-          {movies.map((m) => (
+          {displayedMovies.map((m) => (
             <Grid item key={m.id}>
               <MovieCard key={m.id} movie={m} />
             </Grid>
