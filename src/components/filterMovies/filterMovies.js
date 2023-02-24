@@ -46,6 +46,10 @@ function FilterMovies(props) {
     handleChange(e, "genre", e.target.value);
   };
 
+  const handleRatingChange = (e) => {
+    handleChange(e, "rating", e.target.value);
+  };
+
   return (
     <div>
       <Accordion sx={{ minWidth: "280px" }}>
@@ -88,6 +92,8 @@ function FilterMovies(props) {
                 id="rating-select"
                 label="rating"
                 minWidth="200px"
+                value={props.ratingFilter}
+                onChange={handleRatingChange}
               >
                 {ratings.map((rating) => {
                   return (

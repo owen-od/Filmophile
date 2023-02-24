@@ -12,6 +12,8 @@ import "@fontsource/righteous";
 
 const TopMoviesPage = (props) => {
   const [genreFilter, setGenreFilter] = useState("0");
+  const [ratingFilter, setRatingFilter] = useState("0");
+
   const genreId = Number(genreFilter);
 
   const cachedPage = parseInt(localStorage.getItem("topMoviesPage"));
@@ -52,12 +54,19 @@ const TopMoviesPage = (props) => {
   const movies = data.results;
 
   let displayedMovies = movies
-  .filter((m) => {
-    return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-  })
+    .filter((m) => {
+      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    })
+    .filter((m) => {
+      return m.vote_average > ratingFilter;
+    });
 
   const handleChange = (type, value) => {
-   setGenreFilter(value);
+    if (type === "rating") {
+      setRatingFilter(value);
+    } else {
+      setGenreFilter(value);
+    }
   };
 
   const pageChange = (value) => {
@@ -80,7 +89,11 @@ const TopMoviesPage = (props) => {
           maxWidth="100%"
           sx={{ mb: 3, mt: 3 }}
         >
-          <FilterMovies genreFilter={genreFilter} onUserInput={handleChange} />
+          <FilterMovies
+            genreFilter={genreFilter}
+            onUserInput={handleChange}
+            ratingFilter={ratingFilter}
+          />
         </Grid>
         <Grid
           container
@@ -99,7 +112,10 @@ const TopMoviesPage = (props) => {
           ))}
           <Grid item xs={12} sx={{ mt: 5 }}>
             <Box display="flex" justifyContent="center" alignItems="center">
-              <MoviePagination pageNumber={pageNumber} pageChange={pageChange}/>
+              <MoviePagination
+                pageNumber={pageNumber}
+                pageChange={pageChange}
+              />
             </Box>
           </Grid>
         </Grid>

@@ -12,6 +12,7 @@ import "@fontsource/righteous";
 
 const PopularMoviesPage = () => {
   const [genreFilter, setGenreFilter] = useState("0");
+  const [ratingFilter, setRatingFilter] = useState("0");
   const genreId = Number(genreFilter);
 
   const cachedPage = parseInt(localStorage.getItem("popularMoviesPage"));
@@ -51,12 +52,20 @@ const PopularMoviesPage = () => {
 
   const movies = data.results;
 
-  let displayedMovies = movies.filter((m) => {
-    return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-  });
+  let displayedMovies = movies
+    .filter((m) => {
+      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    })
+    .filter((m) => {
+      return m.vote_average > ratingFilter;
+    });
 
   const handleChange = (type, value) => {
-    setGenreFilter(value);
+    if (type === "rating") {
+      setRatingFilter(value);
+    } else {
+      setGenreFilter(value);
+    }
   };
 
   const pageChange = (value) => {

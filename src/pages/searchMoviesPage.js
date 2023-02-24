@@ -11,6 +11,7 @@ import { CircularProgress } from "@mui/material";
 
 const SearchMoviesPage = () => {
   const [genreFilter, setGenreFilter] = useState("0");
+  const [ratingFilter, setRatingFilter] = useState("0");
   const genreId = Number(genreFilter);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,12 +38,20 @@ const SearchMoviesPage = () => {
 
   const movies = data.results;
 
-  let displayedMovies = movies.filter((m) => {
-    return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-  });
+  let displayedMovies = movies
+    .filter((m) => {
+      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    })
+    .filter((m) => {
+      return m.vote_average > ratingFilter;
+    });
 
   const handleChange = (type, value) => {
-    setGenreFilter(value);
+    if (type === "rating") {
+      setRatingFilter(value);
+    } else {
+      setGenreFilter(value);
+    }
   };
 
   const searchHandler = (value) => {
@@ -63,7 +72,11 @@ const SearchMoviesPage = () => {
           maxWidth="100%"
           sx={{ mb: 3, mt: 3 }}
         >
-          <FilterMovies genreFilter={genreFilter} onUserInput={handleChange} />
+          <FilterMovies
+            genreFilter={genreFilter}
+            onUserInput={handleChange}
+            ratingFilter={ratingFilter}
+          />
         </Grid>
         <Grid
           container
