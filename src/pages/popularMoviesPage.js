@@ -13,6 +13,7 @@ import "@fontsource/righteous";
 const PopularMoviesPage = () => {
   const [genreFilter, setGenreFilter] = useState("0");
   const [ratingFilter, setRatingFilter] = useState("0");
+  const [textFilter, setTextFilter] = useState("");
   const genreId = Number(genreFilter);
 
   const cachedPage = parseInt(localStorage.getItem("popularMoviesPage"));
@@ -57,12 +58,17 @@ const PopularMoviesPage = () => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     })
     .filter((m) => {
+      return m.title.toLowerCase().search(textFilter.toLowerCase()) !== -1;
+    })
+    .filter((m) => {
       return m.vote_average > ratingFilter;
     });
 
   const handleChange = (type, value) => {
     if (type === "rating") {
       setRatingFilter(value);
+    } else if (type === "text") {
+      setTextFilter(value);
     } else {
       setGenreFilter(value);
     }
@@ -88,7 +94,12 @@ const PopularMoviesPage = () => {
           maxWidth="100%"
           sx={{ mb: 3, mt: 3 }}
         >
-          <FilterMovies genreFilter={genreFilter} onUserInput={handleChange} />
+          <FilterMovies
+            genreFilter={genreFilter}
+            onUserInput={handleChange}
+            ratingFilter={ratingFilter}
+            textFilter={textFilter}
+          />
         </Grid>
         <Grid
           container

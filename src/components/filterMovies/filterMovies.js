@@ -50,6 +50,11 @@ function FilterMovies(props) {
     handleChange(e, "rating", e.target.value);
   };
 
+  const handleTextChange = (e) => {
+    handleChange(e, "text", e.target.value);
+    console.log("handling change")
+  };
+
   return (
     <div>
       <Accordion sx={{ minWidth: "280px" }}>
@@ -67,6 +72,8 @@ function FilterMovies(props) {
               label="Search movies"
               type="search"
               variant="outlined"
+              value={props.textFilter}
+              onChange={handleTextChange}
               sx={{ minWidth: "250px" }}
             />
           </Box>
