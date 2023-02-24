@@ -70,7 +70,7 @@ const TopMoviesPage = (props) => {
   const handleChange = (type, value) => {
     if (type === "rating") {
       setRatingFilter(value);
-      } else if (type === "text") {
+    } else if (type === "text") {
       setTextFilter(value);
     } else if (type === "sort") {
       setmovieSorter(value);

@@ -14,6 +14,7 @@ const UpcomingMoviesPage = () => {
   const [genreFilter, setGenreFilter] = useState("0");
   const [ratingFilter, setRatingFilter] = useState("0");
   const [textFilter, setTextFilter] = useState("");
+  const [movieSorter, setmovieSorter] = useState("title");
   const genreId = Number(genreFilter);
 
   const cachedPage = parseInt(localStorage.getItem("upcomingMoviesPage"));
@@ -62,17 +63,20 @@ const UpcomingMoviesPage = () => {
     })
     .filter((m) => {
       return m.vote_average > ratingFilter;
-    });
+    })
+    .sort((a, b) => a[movieSorter].localeCompare(b[movieSorter]));
 
-    const handleChange = (type, value) => {
-      if (type === "rating") {
-        setRatingFilter(value);
-        } else if (type === "text") {
-        setTextFilter(value);
-      } else {
-        setGenreFilter(value);
-      }
-    };
+  const handleChange = (type, value) => {
+    if (type === "rating") {
+      setRatingFilter(value);
+    } else if (type === "text") {
+      setTextFilter(value);
+    } else if (type === "sort") {
+      setmovieSorter(value);
+    } else {
+      setGenreFilter(value);
+    }
+  };
 
   const pageChange = (value) => {
     setPageNumber(value);
@@ -99,6 +103,7 @@ const UpcomingMoviesPage = () => {
             onUserInput={handleChange}
             ratingFilter={ratingFilter}
             textFilter={textFilter}
+            movieSorter={movieSorter}
           />
         </Grid>
         <Grid
