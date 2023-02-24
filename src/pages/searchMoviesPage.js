@@ -10,6 +10,9 @@ import { searchMovies } from "../api/movie-api";
 import { CircularProgress } from "@mui/material";
 
 const SearchMoviesPage = () => {
+  const [genreFilter, setGenreFilter] = useState("0");
+  const genreId = Number(genreFilter);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data, error, isLoading, isError } = useQuery(
@@ -26,13 +29,21 @@ const SearchMoviesPage = () => {
         <CircularProgress />
       </div>
     );
-  };
+  }
 
   if (isError) {
     return <h1>{error.message}</h1>;
-  };
+  }
 
   const movies = data.results;
+
+  let displayedMovies = movies.filter((m) => {
+    return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+  });
+
+  const handleChange = (type, value) => {
+    setGenreFilter(value);
+  };
 
   const searchHandler = (value) => {
     setSearchTerm(value);
@@ -52,7 +63,7 @@ const SearchMoviesPage = () => {
           maxWidth="100%"
           sx={{ mb: 3, mt: 3 }}
         >
-          <FilterMovies />
+          <FilterMovies genreFilter={genreFilter} onUserInput={handleChange} />
         </Grid>
         <Grid
           container
@@ -65,7 +76,7 @@ const SearchMoviesPage = () => {
           mt={3}
         >
           <MovieSearch searchMovies={searchHandler} />
-          {movies.map((m) => (
+          {displayedMovies.map((m) => (
             <Grid item key={m.id}>
               <MovieCard key={m.id} movie={m} />
             </Grid>
