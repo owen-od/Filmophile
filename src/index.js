@@ -9,12 +9,13 @@ import UserPage from "./pages/userPage";
 import SearchMoviesPage from "./pages/searchMoviesPage";
 import PopularMoviesPage from "./pages/popularMoviesPage";
 import UpcomingMoviesPage from "./pages/upcomingMovies";
-import { BrowserRouter, Route, Navigate, Routes, } from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import NavBar from "./components/navigation/navbar";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./protectedRoute";
+import { CssBaseline } from "@mui/material";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -140,6 +141,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AuthContextProvider>
+          <CssBaseline />
           <NavBar />
           <Routes>
             <Route path="/movies/:id" element={<MovieDetailsPage />} />

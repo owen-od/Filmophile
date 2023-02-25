@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 export default function MovieCard(movie) {
   return (
     <CssVarsProvider>
-      <Card variant="outlined" sx={{ width: 215 }}>
+      <Card variant="outlined" sx={{ width: 255 }}>
         <Grid>
           <Grid item xs={11}>
             <Typography

@@ -10,7 +10,7 @@ export default function PersonCard(props) {
   const person = props.person;
   return (
     <CssVarsProvider>
-      <Card sx={{ minHeight: "280px", width: 215 }}>
+      <Card sx={{ minHeight: "280px", width: 250 }}>
         <CardCover>
           <img
             src={

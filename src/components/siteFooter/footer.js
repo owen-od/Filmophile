@@ -30,14 +30,12 @@ function Footer() {
           >
             Filmophile
           </Typography>
-          <div>
+          <Typography variant="body2">
             Filmophile is your one-stop destination for all things cinema. We
             offer a vast collection of movies, including the latest releases and
-            timeless classics. Browse through our selection, watch trailers,
-            read comments, and create your own watchlist. Our user-friendly
-            interface makes it easy to find the perfect movie for you. Discover
-            the magic of the movies with us!
-          </div>
+            timeless classics. Our user-friendly interface makes it easy to find
+            the perfect movie for you. Discover the magic of the movies with us!
+          </Typography>
         </Box>
 
         <Box>
