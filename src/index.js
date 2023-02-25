@@ -14,6 +14,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import NavBar from "./components/navigation/navbar";
 import { AuthContextProvider } from "./context/AuthContext";
+import ProtectedRoute from "./protectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -146,7 +147,14 @@ const App = () => {
             <Route path="/movies/popular" element={<PopularMoviesPage />} />
             <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
             <Route path="/movies/search" element={<SearchMoviesPage />} />
-            <Route path="account" element={<UserPage movies={movies} />} />
+            <Route
+              path="account"
+              element={
+                <ProtectedRoute>
+                  <UserPage movies={movies} />
+                </ProtectedRoute>
+              }
+            />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="/" element={<HomePage />} />
