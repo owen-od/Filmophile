@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,10 +15,7 @@ import "@fontsource/pacifico";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate, NavLink, Link } from "react-router-dom";
 
-const accountOptions = [
-  { label: "Account", path: "/account" },
-  { label: "Login", path: "/login" },
-];
+import { UserAuth } from "../../context/AuthContext";
 
 const movieOptions = [
   { label: "Top", path: "/movies/top" },
@@ -52,6 +50,18 @@ function NavBar() {
 
   const handleCloseMovieMenu = () => {
     setAnchorElMovies(null);
+  };
+
+  const { user, logout } = UserAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+      console.log("logged out");
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   return (
@@ -208,13 +218,18 @@ function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {accountOptions.map((option) => (
+              {user ? (
+                <>
+                  <MenuItem>
+                    <NavLink to="/account">Account</NavLink>
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+                </>
+              ) : (
                 <MenuItem>
-                  <NavLink key={option.label} to={option.path}>
-                    {option.label}
-                  </NavLink>
+                  <NavLink to="/login">Login</NavLink>
                 </MenuItem>
-              ))}
+              )}
             </Menu>
           </Box>
         </Box>

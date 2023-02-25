@@ -138,8 +138,8 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <NavBar />
         <AuthContextProvider>
+          <NavBar />
           <Routes>
             <Route path="/movies/:id" element={<MovieDetailsPage />} />
             <Route path="/movies/top" element={<TopMoviesPage />} />
