@@ -1,14 +1,15 @@
 import React from "react";
-import { Grid, Typography, Avatar, Divider, Button, useMediaQuery, Box } from "@mui/material";
-import MovieCarousel from "../carousels/movieCarousel";
+import { Grid, Typography, Avatar, Button } from "@mui/material";
+import { UserAuth } from "../../context/AuthContext";
 
 const UserDetails = () => {
-  
+  const { user } = UserAuth();
+
   return (
     <Grid container spacing={2} mt={2}>
       <Grid item align="center" xs={12}>
         <Typography variant="h4" component="p">
-          Username@user.com
+          {user.email}
         </Typography>
         <Avatar
           alt="User Image"
@@ -21,22 +22,21 @@ const UserDetails = () => {
         </Button>
       </Grid>
       <Grid item xs={6} align="center">
-      <Typography variant="h4" component="p">
+        <Typography variant="h4" component="p">
           15
         </Typography>
         <Typography variant="h5" component="p">
-        Favourite Movies
+          Favourite Movies
         </Typography>
       </Grid>
       <Grid item xs={6} align="center">
-      <Typography variant="h4" component="p">
+        <Typography variant="h4" component="p">
           15
         </Typography>
         <Typography variant="h5" component="p">
           Movies in Watchlist
         </Typography>
       </Grid>
-      
     </Grid>
   );
 };

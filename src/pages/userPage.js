@@ -3,10 +3,11 @@ import React from "react";
 import Footer from "../components/siteFooter/footer";
 import UserDetails from "../components/details/userDetails";
 import MovieCarousel from "../components/carousels/movieCarousel";
-
+import { UserAuth } from '../context/AuthContext';
 
 const UserPage = (props) => {
   const movies = props.movies;
+  const  { user } = UserAuth();
  
   //const isBigScreen = useMediaQuery("(min-width:1024px)");
   const isNonMobile = useMediaQuery("(min-width:650px)");

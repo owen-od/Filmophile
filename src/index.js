@@ -9,10 +9,11 @@ import UserPage from "./pages/userPage";
 import SearchMoviesPage from "./pages/searchMoviesPage";
 import PopularMoviesPage from "./pages/popularMoviesPage";
 import UpcomingMoviesPage from "./pages/upcomingMovies";
-import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes, } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import NavBar from "./components/navigation/navbar";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -138,22 +139,20 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <NavBar />
-        <Routes>
-          <Route path="/movies/:id" element={<MovieDetailsPage />} />
-          <Route path="/movies/top" element={<TopMoviesPage />} />
-          <Route path="/movies/popular" element={<PopularMoviesPage />} />
-          <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
-          <Route path="/movies/search" element={<SearchMoviesPage />} />
-          <Route path="account" element={<UserPage movies={movies} />} />
-          {/*<Route path="/movies/search" element={<SearchMoviesPage />} /> */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-          {/*<MovieDetailsPage movie={sample} cast={cast} />
-    //<LoginPage />
-    //<RegisterPage />
-    //<UserPage movies={movies} />
-    //<SearchMoviesPage movies={movies}/> */}
-        </Routes>
+        <AuthContextProvider>
+          <Routes>
+            <Route path="/movies/:id" element={<MovieDetailsPage />} />
+            <Route path="/movies/top" element={<TopMoviesPage />} />
+            <Route path="/movies/popular" element={<PopularMoviesPage />} />
+            <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+            <Route path="/movies/search" element={<SearchMoviesPage />} />
+            <Route path="account" element={<UserPage movies={movies} />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </AuthContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
