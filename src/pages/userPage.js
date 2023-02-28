@@ -1,20 +1,47 @@
-import { Grid, Typography, useMediaQuery, Box, Divider } from "@mui/material";
-import React from "react";
+import { Grid, Typography, useMediaQuery, Box, Divider, CircularProgress } from "@mui/material";
+import React, {useContext} from "react";
+import { useQueries } from "react-query";
 import Footer from "../components/siteFooter/footer";
 import UserDetails from "../components/details/userDetails";
 import MovieCarousel from "../components/carousels/movieCarousel";
-import { UserAuth } from '../context/AuthContext';
+import { MoviesContext } from "../context/moviesContext";
+import { getMovie } from "../api/movie-api";
 
-const UserPage = (props) => {
-  const movies = props.movies;
-  const  { user } = UserAuth();
+const UserPage = () => {
+  //const movies = props.movies;
+  const { favourites: movieIds } = useContext(MoviesContext);
+  const numberOfFavs = movieIds.length;
  
-  //const isBigScreen = useMediaQuery("(min-width:1024px)");
   const isNonMobile = useMediaQuery("(min-width:650px)");
+
+  // Create an array of queries and run in parallel.
+  const favouriteMovieQueries = useQueries(
+    movieIds.map((movieId) => {
+      return {
+        queryKey: ["movie", { id: movieId }],
+        queryFn: getMovie,
+      };
+    })
+  );
+
+  const isLoading = favouriteMovieQueries.find((m) => m.isLoading === true);
+
+  if (isLoading) {
+    return (
+      <div sx={{ display: "flex", justifyContent: "center" }}>
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  const movies = favouriteMovieQueries.map((q) => {
+    q.data.genre_ids = q.data.genres.map((g) => g.id);
+    return q.data;
+  });
 
   return (
     <>
-      <UserDetails />
+      <UserDetails numberOfFavs={numberOfFavs} />
       <Divider></Divider>
       <Grid item xs={12}>
         <Grid

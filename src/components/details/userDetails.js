@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Typography, Avatar, Button } from "@mui/material";
 import { UserAuth } from "../../context/AuthContext";
 
-const UserDetails = () => {
+const UserDetails = (props) => {
   const { user } = UserAuth();
 
   return (
@@ -23,7 +23,7 @@ const UserDetails = () => {
       </Grid>
       <Grid item xs={6} align="center">
         <Typography variant="h4" component="p">
-          15
+          {props.numberOfFavs}
         </Typography>
         <Typography variant="h5" component="p">
           Favourite Movies

@@ -5,7 +5,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { setDoc, doc } from "firebase/firestore";
 
 const UserContext = createContext(null);
 
@@ -13,16 +14,21 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+    if (createUserWithEmailAndPassword(auth, email, password)) {
+      setDoc(doc(db, "users", email), {
+        favourites: [],
+        watchlist: [],
+      });
+    }
   };
 
   const logout = () => {
     return signOut(auth);
-  }; 
+  };
 
   const signIn = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password)
-  }
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

@@ -16,6 +16,7 @@ import NavBar from "./components/navigation/navbar";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./protectedRoute";
 import { CssBaseline } from "@mui/material";
+import MoviesContextProvider from "./context/moviesContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -141,6 +142,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AuthContextProvider>
+        <MoviesContextProvider>
           <CssBaseline />
           <NavBar />
           <Routes>
@@ -162,6 +164,7 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </MoviesContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
