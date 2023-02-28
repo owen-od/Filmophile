@@ -219,12 +219,12 @@ function NavBar() {
               onClose={handleCloseUserMenu}
             >
               {user ? (
-                <>
+                <div>
                   <MenuItem>
                     <NavLink to="/account">Account</NavLink>
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-                </>
+                </div>
               ) : (
                 <MenuItem>
                   <NavLink to="/login">Login</NavLink>
