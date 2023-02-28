@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
@@ -11,8 +12,29 @@ import "@fontsource/public-sans";
 import { CssVarsProvider } from "@mui/joy/styles";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
+import { MoviesContext } from "../../context/moviesContext";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { UserAuth } from '../../context/AuthContext';
 
 export default function MovieCard(movie) {
+  const { favourites, addToFavourites, removeFromFavourites } = useContext(MoviesContext);
+
+  const  { user } = UserAuth();
+
+  const handleAddToFavourites = (movie) => {
+    if (!user) {
+      alert ("Please log in to add movies to favourites") 
+    } else {
+    addToFavourites(movie);
+    console.log(favourites);
+    }
+  };
+
+  const handleRemoveFromFavourites = (movie) => {
+    removeFromFavourites(movie);
+    console.log(favourites);
+  };
+
   return (
     <CssVarsProvider>
       <Card variant="outlined" sx={{ width: 255 }}>
@@ -34,15 +56,29 @@ export default function MovieCard(movie) {
             </Typography>
           </Grid>
           <Grid item xs={1}>
-            <IconButton
-              aria-label="favourite"
-              variant="outlined"
-              color="primary"
-              size="sm"
-              sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
-            >
-              <FavoriteBorderIcon />
-            </IconButton>
+            {!favourites.includes(movie.movie.id) ? (
+              <IconButton
+                aria-label="favourite"
+                variant="outlined"
+                color="primary"
+                size="sm"
+                onClick={() => handleAddToFavourites(movie.movie)}
+                sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
+              >
+                <FavoriteBorderIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                aria-label="favourite"
+                variant="filled"
+                color="secondary"
+                size="sm"
+                onClick={() => handleRemoveFromFavourites(movie.movie)}
+                sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
+              >
+                <FavoriteIcon sx={{color: "red"}} />
+              </IconButton>
+            )}
           </Grid>
         </Grid>
         <AspectRatio
