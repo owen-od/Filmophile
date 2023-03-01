@@ -26,7 +26,19 @@ const UserPage = () => {
     })
   );
 
-  const isLoading = favouriteMovieQueries.find((m) => m.isLoading === true);
+   // Create an array of queries and run in parallel.
+   const wathclistMovieQueries = useQueries(
+    watchlistIds.map((movieId) => {
+      return {
+        queryKey: ["movie", { id: movieId }],
+        queryFn: getMovie,
+      };
+    })
+  );
+
+  const FavsIsLoading = favouriteMovieQueries.find((m) => m.isLoading === true);
+  const WatchlistIsLoading = wathclistMovieQueries.find((m) => m.isLoading === true);
+  const isLoading = FavsIsLoading || WatchlistIsLoading;
 
   if (isLoading) {
     return (
@@ -36,7 +48,12 @@ const UserPage = () => {
     );
   }
 
-  const movies = favouriteMovieQueries.map((q) => {
+  const favMovies = favouriteMovieQueries.map((q) => {
+    q.data.genre_ids = q.data.genres.map((g) => g.id);
+    return q.data;
+  });
+
+  const watchlistMovies = wathclistMovieQueries.map((q) => {
     q.data.genre_ids = q.data.genres.map((g) => g.id);
     return q.data;
   });
@@ -66,7 +83,7 @@ const UserPage = () => {
             >
               Favourite Movies
             </Typography>
-            <MovieCarousel movies={movies}></MovieCarousel>
+            <MovieCarousel movies={favMovies}></MovieCarousel>
           </Box>
         </Grid>
         <Grid
@@ -89,7 +106,7 @@ const UserPage = () => {
             >
               Watchlist
             </Typography>
-            <MovieCarousel movies={movies}></MovieCarousel>
+            <MovieCarousel movies={watchlistMovies}></MovieCarousel>
           </Box>
         </Grid>
       </Grid>
