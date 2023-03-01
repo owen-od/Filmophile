@@ -9,14 +9,16 @@ import { getMovie } from "../api/movie-api";
 
 const UserPage = () => {
   //const movies = props.movies;
-  const { favourites: movieIds } = useContext(MoviesContext);
-  const numberOfFavs = movieIds.length;
+  const { favourites: favIds } = useContext(MoviesContext);
+  const { watchlist: watchlistIds } = useContext(MoviesContext);
+  const numberOfFavs = favIds.length;
+  const numberWatchlist = watchlistIds.length
  
   const isNonMobile = useMediaQuery("(min-width:650px)");
 
   // Create an array of queries and run in parallel.
   const favouriteMovieQueries = useQueries(
-    movieIds.map((movieId) => {
+    favIds.map((movieId) => {
       return {
         queryKey: ["movie", { id: movieId }],
         queryFn: getMovie,
@@ -41,7 +43,7 @@ const UserPage = () => {
 
   return (
     <>
-      <UserDetails numberOfFavs={numberOfFavs} />
+      <UserDetails numberOfFavs={numberOfFavs} numberWatchlist={numberWatchlist} />
       <Divider></Divider>
       <Grid item xs={12}>
         <Grid

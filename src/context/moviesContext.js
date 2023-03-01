@@ -14,9 +14,11 @@ const MoviesContextProvider = (props) => {
   useEffect(() => {
     if (!user) {
       setFavourites([]);
+      setWatchlist([]);
       console.log("favs" + favourites);
     } else {
       getUserFavourites();
+      getUserWatchlist();
     }
   }, [user]);
 
@@ -31,10 +33,14 @@ const MoviesContextProvider = (props) => {
     }
   };
 
-  const addToWatchlist = (movie) => {
-    if (!watchlist.includes(movie.id)) {
+  const addToWatchlist = async (movie) => {
+    if (user?.email && !watchlist.includes(movie.id)) {
       let newWatchlist = [...watchlist, movie.id];
       setWatchlist(newWatchlist);
+      const movieRef = doc(db, "users", `${user?.email}`);
+      await updateDoc(movieRef, {
+        watchlist: arrayUnion(movie.id),
+      });
       console.log(movie.original_title + " added to watchlist");
       console.log(watchlist);
     }
@@ -49,6 +55,21 @@ const MoviesContextProvider = (props) => {
       console.log("new favs: " + movies);
       await updateDoc(movieRef, {
         favourites: movies,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const removeFromWatchlist = async (movie) => {
+    setWatchlist(watchlist.filter((mId) => mId !== movie.id));
+
+    const movieRef = doc(db, "users", `${user?.email}`);
+    try {
+      const movies = watchlist.filter((mId) => mId !== movie.id);
+      console.log("new watchlist: " + movies);
+      await updateDoc(movieRef, {
+        watchlist: movies,
       });
     } catch (e) {
       console.log(e);
@@ -70,6 +91,21 @@ const MoviesContextProvider = (props) => {
     console.log("favourites: " + favourites);
   };
 
+  const getUserWatchlist = async () => {
+    const movieRef = doc(db, "users", `${user?.email}`);
+    const docSnap = await getDoc(movieRef);
+    const watchlist = [];
+    if (docSnap.exists()) {
+      const dataSnapshop = docSnap.data();
+      const list = dataSnapshop.watchlist;
+      list.forEach((f) => {
+        watchlist.push(f);
+      });
+    }
+    setWatchlist(watchlist);
+    console.log("watchlist: " + watchlist);
+  };
+
   return (
     <MoviesContext.Provider
       value={{
@@ -77,6 +113,8 @@ const MoviesContextProvider = (props) => {
         addToFavourites,
         removeFromFavourites,
         addToWatchlist,
+        removeFromWatchlist,
+        watchlist,
       }}
     >
       {props.children}

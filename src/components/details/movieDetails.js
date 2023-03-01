@@ -1,22 +1,39 @@
 import React from "react";
+import { useContext } from "react";
 import {
   Typography,
-  Grid,
   Box,
-  useMediaQuery,
   Button,
   IconButton,
   ListItem,
   List,
-  Stack,
   Paper,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MovieIcon from "@mui/icons-material/Movie";
 import Chip from "@mui/material/Chip";
+import { MoviesContext } from "../../context/moviesContext";
+import { UserAuth } from "../../context/AuthContext";
 
 const MovieDetails = ({ movie }) => {
+  const { watchlist, addToWatchlist, removeFromWatchlist } =
+    useContext(MoviesContext);
+  const { user } = UserAuth();
+
+  const handleAddToWatchlist = (movie) => {
+    if (!user) {
+      alert("Please log in to add movies to watchlist");
+    } else {
+      addToWatchlist(movie);
+    }
+  };
+
+  const handleRemoveFromWatchlist = (movie) => {
+    removeFromWatchlist(movie);
+    console.log(watchlist);
+  };
+
   const backgroundImage = movie.backdrop_path
     ? `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
     : `${process.env.PUBLIC_URL}/assets/background-placeholder.jpg`;
@@ -26,7 +43,7 @@ const MovieDetails = ({ movie }) => {
       padding="30px 0"
       position="relative"
       sx={{
-        "&::after": {
+        "&::before": {
           content: "''",
           backgroundImage: `url(${backgroundImage})`,
           position: "absolute",
@@ -66,9 +83,7 @@ const MovieDetails = ({ movie }) => {
 
         <Box flex="1 1 50%" mb="40px">
           <Box m="40px 0 25px 0">
-            <Typography variant="h3">
-              {movie.title}
-            </Typography>
+            <Typography variant="h3">{movie.title}</Typography>
             <Typography
               variant="h6"
               sx={{ display: "flex", alignItems: "center", mt: "5px" }}
@@ -146,18 +161,35 @@ const MovieDetails = ({ movie }) => {
                 </IconButton>
               </Box>
             </Box>
-            <Button
-              variant="contained"
-              color="secondary"
-              sx={{
-                color: "white",
-                borderRadius: 2,
-                minWidth: "100px",
-                padding: "10px 20px",
-              }}
-            >
-              Add to Watchlist
-            </Button>
+            {!watchlist.includes(movie.id) ? (
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => handleAddToWatchlist(movie)}
+                sx={{
+                  color: "white",
+                  borderRadius: 2,
+                  minWidth: "100px",
+                  padding: "10px 20px",
+                }}
+              >
+                Add to Watchlist
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => handleRemoveFromWatchlist(movie)}
+                sx={{
+                  color: "white",
+                  borderRadius: 2,
+                  minWidth: "100px",
+                  padding: "10px 20px",
+                }}
+              >
+                Remove from Watchlist
+              </Button>
+            )}
           </Box>
         </Box>
       </Box>

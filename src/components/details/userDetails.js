@@ -31,7 +31,7 @@ const UserDetails = (props) => {
       </Grid>
       <Grid item xs={6} align="center">
         <Typography variant="h4" component="p">
-          15
+          {props.numberWatchlist}
         </Typography>
         <Typography variant="h5" component="p">
           Movies in Watchlist
