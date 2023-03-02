@@ -60,7 +60,7 @@ const HomePage = (props) => {
 
   return (
     <>
-      <Grid container padding={2}>
+      <Grid container >
         <Grid item xs={12}>
           <MainCarousel />
         </Grid>
