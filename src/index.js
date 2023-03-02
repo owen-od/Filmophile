@@ -15,8 +15,9 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import NavBar from "./components/navigation/navbar";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./protectedRoute";
-import { CssBaseline } from "@mui/material";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 import MoviesContextProvider from "./context/moviesContext";
+import { themeLight, themeDark } from "./theme";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,6 +33,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <ThemeProvider theme={themeLight}>
         <AuthContextProvider>
         <MoviesContextProvider>
           <CssBaseline />
@@ -57,6 +59,7 @@ const App = () => {
           </Routes>
           </MoviesContextProvider>
         </AuthContextProvider>
+        </ThemeProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
