@@ -33,10 +33,12 @@ const StreamingDetails = ({ movie }) => {
 
   const providers = [];
   if (streamingData.results.IE) {
-    const streaming = streamingData.results.IE.flatrate;
-    streaming.forEach((p) => {
-      providers.push(p.provider_name);
-    });
+    if (streamingData.results.IE.flatrate) {
+      const streaming = streamingData.results.IE.flatrate;
+      streaming.forEach((p) => {
+        providers.push(p.provider_name);
+      });
+    }
   }
   console.log("streaming: " + providers);
 
