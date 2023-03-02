@@ -4,17 +4,16 @@ import {
   Typography,
   Box,
   Button,
-  IconButton,
   ListItem,
   List,
   Paper,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import MovieIcon from "@mui/icons-material/Movie";
 import Chip from "@mui/material/Chip";
 import { MoviesContext } from "../../context/moviesContext";
 import { UserAuth } from "../../context/AuthContext";
+import StreamingDetails from "./streamingDetails";
 
 const MovieDetails = ({ movie }) => {
   const { watchlist, addToWatchlist, removeFromWatchlist } =
@@ -147,20 +146,7 @@ const MovieDetails = ({ movie }) => {
             justifyContent="space-between"
             minHeight="50px"
           >
-            <Box display="flex" flexDirection="column" alignItems="center">
-              <Typography>Streaming on: </Typography>
-              <Box>
-                <IconButton>
-                  <MovieIcon />
-                </IconButton>
-                <IconButton>
-                  <MovieIcon />
-                </IconButton>
-                <IconButton>
-                  <MovieIcon />
-                </IconButton>
-              </Box>
-            </Box>
+            <StreamingDetails movie={movie} />
             {!watchlist.includes(movie.id) ? (
               <Button
                 variant="contained"
