@@ -60,12 +60,12 @@ export default function MovieCard(movie) {
               <IconButton
                 aria-label="favourite"
                 variant="outlined"
-                color="primary"
+                color="white"
                 size="sm"
                 onClick={() => handleAddToFavourites(movie.movie)}
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               >
-                <FavoriteBorderIcon />
+                <FavoriteBorderIcon sx={{color: "red"}} />
               </IconButton>
             ) : (
               <IconButton
@@ -76,7 +76,7 @@ export default function MovieCard(movie) {
                 onClick={() => handleRemoveFromFavourites(movie.movie)}
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               >
-                <FavoriteIcon sx={{color: "red"}} />
+                <FavoriteIcon sx={{color: "red", fontSize: "1.6rem"}} />
               </IconButton>
             )}
           </Grid>
@@ -113,7 +113,7 @@ export default function MovieCard(movie) {
             size="sm"
             color="primary"
             aria-label="Explore Bahamas Islands"
-            sx={{ ml: "auto", fontWeight: 600, backgroundColor: "secondary" }}
+            sx={{ ml: "auto", fontWeight: 600, color: "primary" }}
           >
             More info
           </Button>
