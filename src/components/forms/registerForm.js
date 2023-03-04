@@ -78,6 +78,7 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                sx={{label: { color: "text.primary" },}}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -88,6 +89,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
+                sx={{label: { color: "text.primary" },}}
               />
             </Grid>
             <Grid item xs={12}>
@@ -100,6 +102,7 @@ export default function SignUp() {
                 onChange={(e) => setEmail(e.target.value)}
                 name="email"
                 autoComplete="email"
+                sx={{label: { color: "text.primary" },}}
               />
             </Grid>
             <Grid item xs={12}>
@@ -113,6 +116,7 @@ export default function SignUp() {
                 onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 autoComplete="new-password"
+                sx={{label: { color: "text.primary" },}}
               />
             </Grid>
           </Grid>
@@ -126,7 +130,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

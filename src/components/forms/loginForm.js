@@ -80,6 +80,7 @@ const LoginForm = () => {
             autoFocus
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            sx={{label: { color: "text.primary" },}}
           />
           <TextField
             margin="normal"
@@ -92,6 +93,7 @@ const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
+            sx={{label: { color: "text.primary" },}}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -112,7 +114,7 @@ const LoginForm = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
