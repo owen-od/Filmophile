@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -118,7 +117,11 @@ function NavBar() {
           >
             {movieOptions.map((movie) => (
               <MenuItem>
-                <NavLink key={movie.label} to={movie.path}>
+                <NavLink
+                  key={movie.label}
+                  to={movie.path}
+                  onClick={handleCloseNavMenu}
+                >
                   {movie.label}
                 </NavLink>
               </MenuItem>
@@ -178,7 +181,11 @@ function NavBar() {
             >
               {movieOptions.map((movie) => (
                 <MenuItem>
-                  <NavLink key={movie.label} to={movie.path}>
+                  <NavLink
+                    key={movie.label}
+                    to={movie.path}
+                    onClick={handleCloseMovieMenu}
+                  >
                     {movie.label}
                   </NavLink>
                 </MenuItem>
@@ -221,13 +228,17 @@ function NavBar() {
               {user ? (
                 <div>
                   <MenuItem>
-                    <NavLink to="/account">Account</NavLink>
+                    <NavLink to="/account" onClick={handleCloseUserMenu}>
+                      Account
+                    </NavLink>
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                 </div>
               ) : (
                 <MenuItem>
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/login" onClick={handleCloseUserMenu}>
+                    Login
+                  </NavLink>
                 </MenuItem>
               )}
             </Menu>
