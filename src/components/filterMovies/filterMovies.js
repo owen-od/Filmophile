@@ -17,7 +17,6 @@ import { useQuery } from "react-query";
 import { CircularProgress } from "@mui/material";
 
 function FilterMovies(props) {
-
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
   const ratings = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -77,13 +76,25 @@ function FilterMovies(props) {
               variant="outlined"
               value={props.textFilter}
               onChange={handleTextChange}
-              sx={{ minWidth: "250px" }}
+              sx={{
+                minWidth: "250px",
+                color: "primary.main",
+                label: { color: "text.primary" },
+              }}
             />
           </Box>
           <Box sx={{ minWidth: "250px" }}>
             <FormControl sx={{ minWidth: "250px", marginTop: 1 }}>
-              <InputLabel id="genre-label">Genre</InputLabel>
-              <Select labelId="genre-label" id="genre-select" label="genre" value={props.genreFilter} onChange={handleGenreChange}>
+              <InputLabel id="genre-label" sx={{ color: "primary.main" }}>
+                Genre
+              </InputLabel>
+              <Select
+                labelId="genre-label"
+                id="genre-select"
+                label="genre"
+                value={props.genreFilter}
+                onChange={handleGenreChange}
+              >
                 {genres.map((genre) => {
                   return (
                     <MenuItem key={genre.id} value={genre.id}>
@@ -96,7 +107,9 @@ function FilterMovies(props) {
           </Box>
           <Box>
             <FormControl sx={{ minWidth: "250px", marginTop: 1 }}>
-              <InputLabel id="genre-label">Rating</InputLabel>
+              <InputLabel id="genre-label" sx={{ color: "primary.main" }}>
+                Rating
+              </InputLabel>
               <Select
                 labelId="rating-label"
                 id="rating-select"
@@ -118,7 +131,7 @@ function FilterMovies(props) {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ mt: 1, minWidth: "280px", }}>
+      <Accordion sx={{ mt: 1, minWidth: "280px" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
@@ -128,7 +141,9 @@ function FilterMovies(props) {
         </AccordionSummary>
         <AccordionDetails>
           <FormControl sx={{ minWidth: "250px" }}>
-            <InputLabel id="sort-label">Sort Option</InputLabel>
+            <InputLabel id="sort-label" sx={{ color: "primary.main" }}>
+              Sort Option
+            </InputLabel>
             <Select
               labelId="sort-label"
               id="sort-select"
