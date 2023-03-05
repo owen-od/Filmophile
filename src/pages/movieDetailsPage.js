@@ -3,7 +3,7 @@ import React from "react";
 import Footer from "../components/siteFooter/footer";
 import MovieDetails from "../components/details/movieDetails";
 import CastCarousel from "../components/carousels/castCarousel";
-import CommentBox from "../components/forms/commentBox";
+import CommentBox from "../components/comments/commentBox";
 import { useQuery } from "react-query";
 import { getMovie, getMovieCast } from "../api/movie-api";
 import { useParams } from "react-router-dom";
@@ -75,7 +75,7 @@ const MovieDetailsPage = (props) => {
         paddingBottom={0}
         paddingTop={8}
       >
-        <CommentBox />
+        <CommentBox movie={movie} />
       </Box>
       <Footer />
     </>

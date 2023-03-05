@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../firebase";
-import { arrayUnion, updateDoc, getDoc, doc } from "firebase/firestore";
+import {
+  arrayUnion,
+  updateDoc,
+  getDoc,
+  doc,
+  Timestamp,
+  setDoc,
+} from "firebase/firestore";
 import { UserAuth } from "../context/AuthContext";
 
 export const MoviesContext = React.createContext(null);
@@ -30,6 +37,25 @@ const MoviesContextProvider = (props) => {
       await updateDoc(movieRef, {
         favourites: arrayUnion(movie.id),
       });
+    }
+  };
+
+  const addComment = async (movie, comment) => {
+    if (user?.email) {
+      let newComment = {
+        user: user.email,
+        dateAdded: Timestamp.now(),
+        comment: comment,
+        likes: 0,
+      };
+      console.log("movieId: " + movie.movie.id);
+      await setDoc(
+        doc(db, "movies", `${movie.movie?.id}`),
+        {
+          comments: arrayUnion(newComment),
+        },
+        { merge: true }
+      );
     }
   };
 
@@ -83,11 +109,13 @@ const MoviesContextProvider = (props) => {
     if (docSnap.exists()) {
       const dataSnapshop = docSnap.data();
       const fav = dataSnapshop.favourites;
-      fav.forEach((f) => {
-        favourites.push(f);
-      });
+      if (fav.length > 0) {
+        fav.forEach((f) => {
+          favourites.push(f);
+        });
+      }
+      setFavourites(favourites);
     }
-    setFavourites(favourites);
     console.log("favourites: " + favourites);
   };
 
@@ -98,11 +126,13 @@ const MoviesContextProvider = (props) => {
     if (docSnap.exists()) {
       const dataSnapshop = docSnap.data();
       const list = dataSnapshop.watchlist;
-      list.forEach((f) => {
-        watchlist.push(f);
-      });
+      if (list.length > 0) {
+        list.forEach((f) => {
+          watchlist.push(f);
+        });
+      }
+      setWatchlist(watchlist);
     }
-    setWatchlist(watchlist);
     console.log("watchlist: " + watchlist);
   };
 
@@ -115,6 +145,7 @@ const MoviesContextProvider = (props) => {
         addToWatchlist,
         removeFromWatchlist,
         watchlist,
+        addComment,
       }}
     >
       {props.children}
