@@ -42,7 +42,6 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
 );
 
 const CastCarousel = (props) => {
-  console.log("hello")
   const settings = {
     dots: false,
     arrows: true,
