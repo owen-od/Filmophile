@@ -48,6 +48,9 @@ export default function CommentForm(props) {
               </InputAdornment>
             ),
           }}
+          inputProps={{
+            maxLength: 1000
+          }}
         />
       </form>
       </>
