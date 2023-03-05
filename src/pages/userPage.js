@@ -1,19 +1,27 @@
-import { Grid, Typography, useMediaQuery, Box, Divider, CircularProgress } from "@mui/material";
-import React, {useContext} from "react";
+import {
+  Grid,
+  Typography,
+  useMediaQuery,
+  Divider,
+  CircularProgress,
+} from "@mui/material";
+import React, { useContext, useState } from "react";
 import { useQueries } from "react-query";
 import Footer from "../components/siteFooter/footer";
 import UserDetails from "../components/details/userDetails";
-import MovieCarousel from "../components/carousels/movieCarousel";
 import { MoviesContext } from "../context/moviesContext";
 import { getMovie } from "../api/movie-api";
+import MovieCard from "../components/movieCards/movieCard";
+import { Tabs, Tab } from "@mui/material";
 
 const UserPage = () => {
   //const movies = props.movies;
   const { favourites: favIds } = useContext(MoviesContext);
   const { watchlist: watchlistIds } = useContext(MoviesContext);
   const numberOfFavs = favIds.length;
-  const numberWatchlist = watchlistIds.length
- 
+  const numberWatchlist = watchlistIds.length;
+  const [value, setValue] = useState(0);
+
   const isNonMobile = useMediaQuery("(min-width:650px)");
 
   // Create an array of queries and run in parallel.
@@ -26,8 +34,8 @@ const UserPage = () => {
     })
   );
 
-   // Create an array of queries and run in parallel.
-   const wathclistMovieQueries = useQueries(
+  // Create an array of queries and run in parallel.
+  const wathclistMovieQueries = useQueries(
     watchlistIds.map((movieId) => {
       return {
         queryKey: ["movie", { id: movieId }],
@@ -37,7 +45,9 @@ const UserPage = () => {
   );
 
   const FavsIsLoading = favouriteMovieQueries.find((m) => m.isLoading === true);
-  const WatchlistIsLoading = wathclistMovieQueries.find((m) => m.isLoading === true);
+  const WatchlistIsLoading = wathclistMovieQueries.find(
+    (m) => m.isLoading === true
+  );
   const isLoading = FavsIsLoading || WatchlistIsLoading;
 
   if (isLoading) {
@@ -58,56 +68,53 @@ const UserPage = () => {
     return q.data;
   });
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  let displayedMovies = favMovies;
+
+  if (value == 0) {
+    displayedMovies = favMovies;
+  } else {
+    displayedMovies = watchlistMovies;
+  }
+
   return (
     <>
-      <UserDetails numberOfFavs={numberOfFavs} numberWatchlist={numberWatchlist} />
+      <UserDetails
+        numberOfFavs={numberOfFavs}
+        numberWatchlist={numberWatchlist}
+      />
       <Divider></Divider>
-      <Grid item xs={12}>
-        <Grid
-          item
-          xs={12}
-          direction="row"
-          alignItems="center"
-          sx={{ paddingBottom: "10px" }}
-        >
-          <Divider sx={{mt: 5}}/>
-          <Box
-            paddingRight={isNonMobile ? 10 : 3}
-            paddingLeft={isNonMobile ? 10 : 3}
-            paddingTop={3}
+      <Grid container>
+        <Grid item xs={12}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            textColor="primary"
+            sx={{ bgcolor: "secondary.main" }}
+            centered
           >
-            <Typography
-              variant="h4"
-              align="center"
-              sx={{ padding: "10px", mb: 1 }}
-            >
-              Favourite Movies
-            </Typography>
-            <MovieCarousel movies={favMovies}></MovieCarousel>
-          </Box>
+            <Tab label="Favourites" />
+            <Tab label="Watchlist" />
+          </Tabs>
         </Grid>
+
         <Grid
-          item
+          container
           xs={12}
-          direction="row"
-          alignItems="center"
-          sx={{ paddingBottom: "10px" }}
+          display="flex"
+          flex-wrap="wrap"
+          justifyContent="center"
+          gap="30px"
+          mt={3}
         >
-          <Divider></Divider>
-          <Box
-            paddingRight={isNonMobile ? 10 : 3}
-            paddingLeft={isNonMobile ? 10 : 3}
-            paddingTop={5}
-          >
-            <Typography
-              variant="h4"
-              align="center"
-              sx={{ padding: "10px", mb: 1 }}
-            >
-              Watchlist
-            </Typography>
-            <MovieCarousel movies={watchlistMovies}></MovieCarousel>
-          </Box>
+          {displayedMovies.map((m) => (
+            <Grid item key={m.id}>
+              <MovieCard key={m.id} movie={m} />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
       <Footer />
