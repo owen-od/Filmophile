@@ -1,17 +1,60 @@
-import React from "react";
-import { Grid, Typography, Avatar, Button, Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Grid, Typography, Avatar, Button } from "@mui/material";
 import { UserAuth } from "../../context/AuthContext";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../firebase";
 
 const UserDetails = (props) => {
-  const { user } = UserAuth();
-
   const backgroundImage = `${process.env.PUBLIC_URL}/assets/watching.jpg`;
+
+  const { user, updateImage } = UserAuth();
+  const [file, setFile] = useState();
+
+  useEffect(() => {
+    const uploadImage = () => {
+      const storageRef = ref(storage, `profile_images/${user.uid}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            //console.log("File available at", downloadURL);
+            //the below function adds downloaded the URL to the user profile
+            updateImage(downloadURL);
+          });
+        }
+      );
+    };
+    file && uploadImage();
+  }, [file]);
 
   return (
     <Grid
       container
       spacing={2}
-      mt={.3}
+      mt={0.3}
       position="relative"
       sx={{
         "&::before": {
@@ -33,13 +76,24 @@ const UserDetails = (props) => {
         </Typography>
         <Avatar
           alt="User Image"
+          src={user.photoURL ? user.photoURL : "/static/images/avatar/2.jpg"}
           sx={{ width: 220, height: 220, mt: 2 }}
         ></Avatar>
       </Grid>
       <Grid item xs={12} align="center">
-        <Button variant="outlined" align="center">
-          Update Image
-        </Button>
+        <input
+          accept="image/*"
+          style={{ display: "none" }}
+          id="raised-button-file"
+          multiple
+          type="file"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <label htmlFor="raised-button-file">
+          <Button variant="outlined" component="span" align="center">
+            Update Image
+          </Button>
+        </label>
       </Grid>
       <Grid item xs={6} align="center">
         <Typography variant="h4" component="p">
