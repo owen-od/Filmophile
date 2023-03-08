@@ -111,9 +111,9 @@ export default function MovieCard(movie) {
             to={`/movies/${movie.movie.id}`}
             variant="outlined"
             size="sm"
-            color="primary"
+            color="neutral"
             aria-label="Explore Bahamas Islands"
-            sx={{ ml: "auto", fontWeight: 600, color: "primary" }}
+            sx={{ ml: "auto", fontWeight: 600, }}
           >
             More info
           </Button>
