@@ -48,12 +48,20 @@ const CastCarousel = (props) => {
     infinite: props.cast.length>7,
     speed: 750,
     centerMode: false,
-    slidesToShow: 7,
+    slidesToShow: 8,
     swipeToSlide: true,
     slidesToScroll: 1,
     prevArrow: <SlickArrowLeft />,
     nextArrow: <SlickArrowRight />,
     responsive: [
+      {
+        breakpoint: 2220,
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 1,
+          dots: false,
+        },
+      },
       {
         breakpoint: 2150,
         settings: {
