@@ -18,6 +18,7 @@ import ProtectedRoute from "./protectedRoute";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import MoviesContextProvider from "./context/moviesContext";
 import { themeLight, themeDark } from "./theme";
+import ArticlePage from "./pages/articlePage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/movies/popular" element={<PopularMoviesPage />} />
             <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
             <Route path="/movies/search" element={<SearchMoviesPage />} />
+            <Route path="/articles/:id" element={<ArticlePage />} />
             <Route
               path="account"
               element={
