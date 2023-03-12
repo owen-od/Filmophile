@@ -32,6 +32,7 @@ export const themeLight = createTheme({
     background: {
       default: '#FCFCFC',
       paper: '#FCFCFC',
+      accent: '#FFFFFC'
     },
     text: {
       primary: "#000000",
