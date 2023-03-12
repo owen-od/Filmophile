@@ -45,9 +45,9 @@ const CastCarousel = (props) => {
   const settings = {
     dots: false,
     arrows: true,
-    infinite: true,
+    infinite: props.cast.length>7,
     speed: 750,
-    centerMode: true,
+    centerMode: false,
     slidesToShow: 7,
     swipeToSlide: true,
     slidesToScroll: 1,
@@ -55,11 +55,18 @@ const CastCarousel = (props) => {
     nextArrow: <SlickArrowRight />,
     responsive: [
       {
-        breakpoint: 2100,
+        breakpoint: 2150,
         settings: {
           slidesToShow: 6,
           slidesToScroll: 1,
-          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1900,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
           dots: false,
         },
       },
@@ -68,45 +75,39 @@ const CastCarousel = (props) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 1,
-          infinite: true,
           dots: false,
         },
       },
       {
-        breakpoint: 1650,
+        breakpoint: 1450,
         settings: {
           slidesToShow: 4,
-          //centerMode: false,
           slidesToScroll: 1,
-          infinite: true,
           dots: false,
         },
       },
       {
-        breakpoint: 1300,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
-          //centerMode: false,
           slidesToScroll: 1,
-          infinite: true,
           dots: false,
         },
       },
       {
-        breakpoint: 1050,
+        breakpoint: 950,
         settings: {
           slidesToShow: 2,
-          //centerMode: false,
           slidesToScroll: 1,
           dots: false,
         },
       },
       {
-        breakpoint: 750,
+        breakpoint: 700,
         settings: {
           slidesToShow: 1,
-          centerMode: false,
           slidesToScroll: 1,
+          //centerMode: true,
           dots: false,
         },
       },

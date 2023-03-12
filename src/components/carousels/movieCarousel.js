@@ -61,7 +61,6 @@ const MovieCarousel = (movies) => {
         settings: {
           slidesToShow: 6,
           slidesToScroll: 1,
-          //infinite: true,
           dots: false,
         },
       },
@@ -70,30 +69,35 @@ const MovieCarousel = (movies) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 1,
-          //infinite: true,
           dots: false,
         },
       },
       {
         breakpoint: 1800,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 1,
-          //infinite: true,
           dots: false,
         },
       },
       {
-        breakpoint: 1300,
+        breakpoint: 1450,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          //infinite: true,
           dots: false,
         },
       },
       {
-        breakpoint: 1150,
+        breakpoint: 950,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -101,10 +105,11 @@ const MovieCarousel = (movies) => {
         },
       },
       {
-        breakpoint: 750,
+        breakpoint: 700,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          //centerMode: true,
           dots: false,
         },
       },
