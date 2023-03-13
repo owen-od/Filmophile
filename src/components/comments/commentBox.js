@@ -25,7 +25,12 @@ export default function CommentBox(movie) {
 
   return (
     <Paper sx={{ padding: "20px 20px" }}>
-      <Typography variant="h4" align="center" sx={{ mb: 2 }}>
+      <Typography
+        variant="h4"
+        fontFamily="Righteous"
+        align="center"
+        sx={{ mb: 2 }}
+      >
         Join the conversation
       </Typography>
       <CommentForm movie={movie} />

@@ -61,9 +61,9 @@ const MovieDetailsPage = (props) => {
       >
         <Typography
           variant="h4"
-          component="h3"
+          fontFamily="Righteous"
           align="center"
-          sx={{ paddingTop: 5, paddingBottom: 2 }}
+          sx={{ paddingBottom: 2, paddingTop: 5 }}
         >
           Meet the cast
         </Typography>
