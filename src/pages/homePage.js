@@ -13,6 +13,7 @@ import Footer from "../components/siteFooter/footer";
 import { CircularProgress } from "@mui/material";
 import FeaturedArticleCard from "../components/article/featuredArticleCard";
 import "@fontsource/righteous";
+import "@fontsource/pacifico";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -96,14 +97,15 @@ const HomePage = () => {
         </Grid>
 
         <Grid container>
-          <Grid item xs={12} sx={{ backgroundColor: "primary.secondary" }}>
+          <Grid item xs={12} sx={{ backgroundColor: "secondary.main" }}>
             <Typography
               color="primary.main"
               variant="h6"
-              sx={{ fontFamily: "Righteous" }}
+              sx={{ fontFamily: "Pacifico" }}
+              letterSpacing={1.5}
               align="center"
               p={1}
-            ></Typography>
+            >Filmophile</Typography>
           </Grid>
 
           <Grid
@@ -120,7 +122,7 @@ const HomePage = () => {
               paddingBottom={5}
             >
               <Typography
-                color="primary.secondary"
+                color="secondary.main"
                 variant="subtitle2"
                 fontFamily="Righteous"
                 align="center"
@@ -128,7 +130,7 @@ const HomePage = () => {
                 Classic films
               </Typography>
               <Typography
-                color="primary.secondary"
+                color="secondary.main"
                 variant="h4"
                 fontFamily="Righteous"
                 align="center"
@@ -142,7 +144,7 @@ const HomePage = () => {
             <Grid container sx={{ backgroundColor: "background.accent" }}>
               <Grid item xs={12}>
                 <Typography
-                  color="primary.secondary"
+                  color="secondary.main"
                   variant="subtitle2"
                   pl={2}
                   fontFamily="Righteous"
@@ -152,7 +154,7 @@ const HomePage = () => {
                   Movie Stories and News
                 </Typography>
                 <Typography
-                  color="primary.secondary"
+                  color="secondary.main"
                   variant="h4"
                   pl={2}
                   fontFamily="Righteous"
@@ -178,7 +180,7 @@ const HomePage = () => {
               paddingTop={5}
             >
               <Typography
-                color="primary.secondary"
+                color="secondary.main"
                 variant="subtitle2"
                 fontFamily="Righteous"
                 align="center"
@@ -186,7 +188,7 @@ const HomePage = () => {
                 In the spotlight
               </Typography>
               <Typography
-                color="primary.secondary"
+                color="secondary.main"
                 variant="h4"
                 fontFamily="Righteous"
                 align="center"
@@ -210,7 +212,7 @@ const HomePage = () => {
               paddingTop={5}
             >
               <Typography
-                color="primary.secondary"
+                color="secondary.main"
                 variant="subtitle2"
                 fontFamily="Righteous"
                 align="center"
@@ -218,7 +220,7 @@ const HomePage = () => {
                 Go to the movies
               </Typography>
               <Typography
-                color="primary.secondary"
+                color="secondary.main"
                 variant="h4"
                 pl={2}
                 fontFamily="Righteous"
