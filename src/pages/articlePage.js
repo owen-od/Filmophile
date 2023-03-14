@@ -92,7 +92,11 @@ const ArticlePage = (props) => {
           maxWidth="100%"
           sx={{ mt: 3 }}
         >
-          <Avatar sx={{ width: 150, height: 150, mt: 2 }}></Avatar>
+          <Avatar sx={{ width: 150, height: 150, mt: 2 }} src={
+              article.authorImageUrl
+                ? `${article.authorImageUrl}`
+                : `${process.env.PUBLIC_URL}/assets/poster-placeholder.png`
+            }></Avatar>
           <Typography variant="subtitle2" sx={{ padding: 1 }}>
             By: {article.author}
           </Typography>
