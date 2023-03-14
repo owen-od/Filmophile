@@ -26,18 +26,21 @@ function FeaturedArticleCard(props) {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea>
+      <Link
+            to={`/articles/${article.id}`}
+            style={{ textDecoration: "none" }}
+          >
         <Card sx={{ display: "flex", height: 250 }}>
-          <CardContent sx={{ flex: 1 }}>
-            <Typography component="h2" variant="h5">
-              {article.mainTitle}
-            </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
-              {date}
-            </Typography>
-            <Typography variant="subtitle1" paragraph>
-              {article.mainSubtitle}
-            </Typography>
-            <Link to={`/articles/${article.id}`}>
+            <CardContent sx={{ flex: 1 }}>
+              <Typography component="h2" variant="h5">
+                {article.mainTitle}
+              </Typography>
+              <Typography variant="subtitle1" color="text.secondary">
+                {date}
+              </Typography>
+              <Typography variant="subtitle1" paragraph>
+                {article.mainSubtitle}
+              </Typography>
               <Typography
                 variant="subtitle1"
                 color="primary.main"
@@ -45,14 +48,14 @@ function FeaturedArticleCard(props) {
               >
                 Continue reading...
               </Typography>
-            </Link>
-          </CardContent>
-          <CardMedia
-            component="img"
-            sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-            image={backgroundImage}
-          />
+            </CardContent>
+            <CardMedia
+              component="img"
+              sx={{ width: 160, display: { xs: "none", sm: "block" } }}
+              image={backgroundImage}
+            />
         </Card>
+        </Link>
       </CardActionArea>
     </Grid>
   );
