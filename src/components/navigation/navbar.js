@@ -121,6 +121,7 @@ function NavBar() {
                   key={movie.label}
                   to={movie.path}
                   onClick={handleCloseNavMenu}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   {movie.label}
                 </NavLink>
@@ -157,7 +158,7 @@ function NavBar() {
         >
           <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
             <Tooltip title="Open Movies">
-              <IconButton onClick={handleOpenMovieMenu} sx={{ p: 0, mr: 2 }}>
+              <IconButton onClick={handleOpenMovieMenu} onMouseOver={handleOpenMovieMenu} sx={{ p: 0, mr: 2 }}>
                 <Typography sx={{ color: "white", fontSize: "1.3rem" }}>
                   Movies
                 </Typography>
@@ -178,6 +179,7 @@ function NavBar() {
               }}
               open={Boolean(anchorElMovies)}
               onClose={handleCloseMovieMenu}
+              MenuListProps={{ onMouseLeave: handleCloseMovieMenu }}
             >
               {movieOptions.map((movie) => (
                 <MenuItem>
@@ -185,6 +187,7 @@ function NavBar() {
                     key={movie.label}
                     to={movie.path}
                     onClick={handleCloseMovieMenu}
+                    style={{ textDecoration: "none", color: "black" }}
                   >
                     {movie.label}
                   </NavLink>
@@ -215,7 +218,7 @@ function NavBar() {
                     }
                   />
                 ) : (
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar src="/static/images/avatar/2.jpg" />
                 )}
               </IconButton>
             </Tooltip>
@@ -238,7 +241,11 @@ function NavBar() {
               {user ? (
                 <div>
                   <MenuItem>
-                    <NavLink to="/account" onClick={handleCloseUserMenu}>
+                    <NavLink
+                      to="/account"
+                      onClick={handleCloseUserMenu}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
                       Account
                     </NavLink>
                   </MenuItem>
