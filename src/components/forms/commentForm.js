@@ -1,29 +1,24 @@
-import React, {useContext, useState} from "react";
-import {
-  TextField,
-  InputAdornment,
-  Button,
-} from "@mui/material";
+import React, { useContext, useState } from "react";
+import { TextField, InputAdornment, Button } from "@mui/material";
 
 import { MoviesContext } from "../../context/moviesContext";
-import { UserAuth } from '../../context/AuthContext';
-
+import { UserAuth } from "../../context/AuthContext";
 
 export default function CommentForm(props) {
   const [comment, setComment] = useState("");
   const { addComment } = useContext(MoviesContext);
   const movie = props.movie;
-  const  { user } = UserAuth();
+  const { user } = UserAuth();
 
-  const handleSubmit= (e, comment) => {
-    e.preventDefault()
+  const handleSubmit = (e, comment) => {
+    e.preventDefault();
     if (!user) {
-      alert ("Please log in to add comments") 
+      alert("Please log in to add comments");
     } else {
-    addComment(movie, comment);
-    setComment("");
+      addComment(movie, comment);
+      setComment("");
     }
-  }
+  };
 
   return (
     <>
@@ -37,8 +32,9 @@ export default function CommentForm(props) {
           name="comment"
           id="comment"
           value={comment}
+          required
           onChange={(e) => setComment(e.target.value)}
-          sx={{ mb: 4, label: { color: "text.primary"}}}
+          sx={{ mb: 4, label: { color: "text.primary" } }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -49,10 +45,11 @@ export default function CommentForm(props) {
             ),
           }}
           inputProps={{
-            maxLength: 1000
+            maxLength: 1000,
+            minLength: 4,
           }}
         />
       </form>
-      </>
+    </>
   );
 }
