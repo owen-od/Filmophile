@@ -158,7 +158,11 @@ function NavBar() {
         >
           <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
             <Tooltip title="Open Movies">
-              <IconButton onClick={handleOpenMovieMenu} onMouseOver={handleOpenMovieMenu} sx={{ p: 0, mr: 2 }}>
+              <IconButton
+                onClick={handleOpenMovieMenu}
+                onMouseOver={handleOpenMovieMenu}
+                sx={{ p: 0, mr: 2 }}
+              >
                 <Typography sx={{ color: "white", fontSize: "1.3rem" }}>
                   Movies
                 </Typography>
@@ -253,7 +257,11 @@ function NavBar() {
                 </div>
               ) : (
                 <MenuItem>
-                  <NavLink to="/login" onClick={handleCloseUserMenu}>
+                  <NavLink
+                    to="/login"
+                    onClick={handleCloseUserMenu}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
                     Login
                   </NavLink>
                 </MenuItem>
