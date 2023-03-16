@@ -1,10 +1,9 @@
-import { Grid, Typography, useMediaQuery, Box } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Footer from "../components/siteFooter/footer";
 import FilterMovies from "../components/filterMovies/filterMovies";
 import MovieCard from "../components/movieCards/movieCard";
-import MoviePagination from "../components/pagination/pagination";
 import MovieSearch from "../components/forms/searchMovies";
 import { searchMovies } from "../api/movie-api";
 import { CircularProgress } from "@mui/material";
@@ -70,7 +69,7 @@ const SearchMoviesPage = () => {
 
   return (
     <>
-      <Typography variant="h2" component="h2">
+      <Typography variant="h2" component="h2" fontFamily="Righteous">
         Search Movies
       </Typography>
       <Grid container spacing={1}>
