@@ -1,6 +1,12 @@
 import { createTheme } from "@mui/material/styles";
+//import "@fontsource/merriweather"
+//import "@fontsource/roboto"
+import "@fontsource/lato"
 
 export const themeDark = createTheme({
+  typography: {
+    "fontFamily": `"Lato", sans-serif`
+  },
   palette: {
     type: 'dark',
     primary: {
@@ -21,6 +27,9 @@ export const themeDark = createTheme({
 });
 
 export const themeLight = createTheme({
+  typography: {
+    "fontFamily": `"Lato", sans-serif`
+  },
   palette: {
     type: 'light',
     primary: {

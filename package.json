@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fontsource/lato": "^4.5.10",
+    "@fontsource/merriweather": "^4.5.14",
     "@fontsource/pacifico": "^4.5.9",
     "@fontsource/public-sans": "^4.5.11",
     "@fontsource/righteous": "^4.5.7",
