@@ -7,6 +7,9 @@ import {
   doc,
   Timestamp,
   setDoc,
+  query,
+  collection,
+  getDocs,
 } from "firebase/firestore";
 import { UserAuth } from "../context/AuthContext";
 
@@ -15,7 +18,6 @@ export const MoviesContext = React.createContext(null);
 const MoviesContextProvider = (props) => {
   const [favourites, setFavourites] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
-
   const { user } = UserAuth();
 
   useEffect(() => {
@@ -48,6 +50,9 @@ const MoviesContextProvider = (props) => {
         comment: comment,
         likes: 0,
       };
+      if (user.photoURL) {
+        newComment.userPhotoUrl = user.photoURL;
+      }
       console.log("movieId: " + movie.movie.id);
       await setDoc(
         doc(db, "movies", `${movie.movie?.id}`),
@@ -136,6 +141,17 @@ const MoviesContextProvider = (props) => {
     console.log("watchlist: " + watchlist);
   };
 
+  const getLatestArticles = async () => {
+    const q = query(collection(db, "articles"));
+    const querySnapshot = await getDocs(q);
+    const articles = [];
+    querySnapshot.forEach((doc) => {
+      articles.push(doc.data());
+      console.log(doc.id, " => ", doc.data());
+      return articles;
+    });
+  };
+
   return (
     <MoviesContext.Provider
       value={{
@@ -146,6 +162,7 @@ const MoviesContextProvider = (props) => {
         removeFromWatchlist,
         watchlist,
         addComment,
+        getLatestArticles
       }}
     >
       {props.children}
