@@ -1,5 +1,11 @@
 import React from "react";
-import { Divider, Avatar, Grid, Typography, Box } from "@mui/material";
+import {
+  Divider,
+  Avatar,
+  Grid,
+  Typography,
+  Box,
+} from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 export default function Comment(props) {
@@ -19,7 +25,13 @@ export default function Comment(props) {
     <>
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item>
-          <Avatar></Avatar>
+          <Avatar
+            src={
+              comment.userPhotoUrl
+                ? `${comment.userPhotoUrl}`
+                : "/static/images/avatar/2.jpg"
+            }
+          ></Avatar>
         </Grid>
         <Grid justifyContent="left" item xs zeroMinWidth>
           <Typography variant="h6" sx={{ mb: 1 }}>
@@ -35,7 +47,6 @@ export default function Comment(props) {
               {date}
             </Typography>
             <Typography
-              variant="subtitle2"
               sx={{
                 mt: 1,
                 display: "flex",
