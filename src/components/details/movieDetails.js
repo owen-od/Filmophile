@@ -14,6 +14,7 @@ import Chip from "@mui/material/Chip";
 import { MoviesContext } from "../../context/moviesContext";
 import { UserAuth } from "../../context/AuthContext";
 import StreamingDetails from "./streamingDetails";
+import MovieTrailerModal from "../modals/movieTrailerModel";
 
 const MovieDetails = ({ movie }) => {
   const { watchlist, addToWatchlist, removeFromWatchlist } =
@@ -103,6 +104,7 @@ const MovieDetails = ({ movie }) => {
               <ListItem sx={{ paddingLeft: 0, paddingBottom: 0 }}>
                 {movie.genres.map((g) => (
                   <Chip
+                    key={g.id}
                     label={g.name}
                     color="secondary"
                     sx={{ marginRight: 0.5 }}
@@ -110,10 +112,11 @@ const MovieDetails = ({ movie }) => {
                 ))}
               </ListItem>
             </List>
+            <MovieTrailerModal movie={movie} />
             <Paper elevation={3}>
               <Typography
                 sx={{
-                  mt: "20px",
+                  mt: "10px",
                   border: "hidden",
                   padding: 1,
                   overflowY: "scroll",
