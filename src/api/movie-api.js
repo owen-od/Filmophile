@@ -144,3 +144,25 @@ export const getGenres = async () => {
       throw error;
     });
 };
+
+export const getTrailer = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const trailer = data.results.find((video) => video.type === "Trailer");
+      if (trailer) {
+        const trailerUrl = `https://www.youtube.com/watch?v=${trailer.key}`;
+        return trailerUrl;
+      } else {
+        const trailerUrl = ""; //falsy value
+        return trailerUrl;
+      }
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
