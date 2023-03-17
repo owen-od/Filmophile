@@ -62,7 +62,6 @@ const MovieDetailsPage = (props) => {
   if (similarResult.results) {
     similarMovies = similarResult.results;
   }
-  console.log("sims: " + JSON.stringify(similarResult.results));
 
   return (
     <>
