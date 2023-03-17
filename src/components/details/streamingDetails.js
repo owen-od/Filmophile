@@ -40,7 +40,10 @@ const StreamingDetails = ({ movie }) => {
       });
     }
   }
-  console.log("streaming: " + providers);
+ 
+  //set supported streaming providers and then check if returned array in includes any of these
+  const supportedStreamingProviders = ["Disney Plus", "Amazon Prime Video", "Netflix"];
+  const isStreaming = supportedStreamingProviders.some(provider => providers.includes(provider));
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
@@ -69,7 +72,7 @@ const StreamingDetails = ({ movie }) => {
         ) : (
           <></>
         )}
-        {providers.length === 0 ? (
+        {!isStreaming ? (
           <IconButton sx={{ color: "black", fontSize: "1.25rem" }}>
             <CgUnavailable />
           </IconButton>
