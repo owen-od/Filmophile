@@ -30,7 +30,7 @@ const HomePage = () => {
       const articles = [];
       querySnapshot.forEach((doc) => {
         articles.push(doc.data());
-        console.log(doc.id, " => ", doc.data());
+        //console.log(doc.id, " => ", doc.data());
       });
       setLatestArticles(articles);
     };

@@ -121,7 +121,7 @@ const MoviesContextProvider = (props) => {
       }
       setFavourites(favourites);
     }
-    console.log("favourites: " + favourites);
+    //console.log("favourites: " + favourites);
   };
 
   const getUserWatchlist = async () => {
@@ -138,7 +138,7 @@ const MoviesContextProvider = (props) => {
       }
       setWatchlist(watchlist);
     }
-    console.log("watchlist: " + watchlist);
+    //console.log("watchlist: " + watchlist);
   };
 
   const getLatestArticles = async () => {
