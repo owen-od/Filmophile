@@ -39,6 +39,11 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const logout = () => {
+    // remove stored page numbers from local storage
+    let keysToRemove = ["upcomingMoviesPage", "topMoviesPage", "popularMoviesPage"]
+    keysToRemove.forEach(key =>
+      localStorage.removeItem(key))
+      //signout
     return signOut(auth);
   };
 
