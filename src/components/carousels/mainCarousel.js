@@ -25,14 +25,6 @@ const heading1 = (
     <Typography variant="h2" fontFamily="Righteous">
       Discover story-worthy movie moments
     </Typography>
-    <Typography
-      fontWeight="bold"
-      color="red"
-      fontFamily="Righteous"
-      sx={{ textDecoration: "underline" }}
-    >
-      Discover Upcoming Movies
-    </Typography>
   </>
 );
 
@@ -41,14 +33,6 @@ const heading2 = (
     <Typography variant="h2" fontFamily="Righteous">
       Take a trip down memory lane
     </Typography>
-    <Typography
-      fontWeight="bold"
-      color="red"
-      fontFamily="Righteous"
-      sx={{ textDecoration: "underline" }}
-    >
-      Discover Top Rated Movies
-    </Typography>
   </>
 );
 
@@ -56,14 +40,6 @@ const heading3 = (
   <>
     <Typography variant="h2" fontFamily="Righteous">
       Join a community of filmophiles
-    </Typography>
-    <Typography
-      fontWeight="bold"
-      color="red"
-      fontFamily="Righteous"
-      sx={{ textDecoration: "underline" }}
-    >
-      Discuss Movies
     </Typography>
   </>
 );
@@ -78,7 +54,7 @@ const MainCarousel = () => {
       showThumbs={false}
       showIndicators={false}
       showStatus={false}
-      renderArrowPrev={(onClickHandler, hasPrev, label) => (
+      renderArrowPrev={(onClickHandler) => (
         <IconButton
           onClick={onClickHandler}
           sx={{
@@ -93,7 +69,7 @@ const MainCarousel = () => {
           <NavigateBeforeIcon sx={{ fontSize: 40 }} />
         </IconButton>
       )}
-      renderArrowNext={(onClickHandler, hasNext, label) => (
+      renderArrowNext={(onClickHandler) => (
         <IconButton
           onClick={onClickHandler}
           sx={{
