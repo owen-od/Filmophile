@@ -1,16 +1,18 @@
 import React from "react";
-import { Grid, Box, Avatar, Typography, useMediaQuery } from "@mui/material"
+import { Grid, Box, Avatar, Typography, useMediaQuery } from "@mui/material";
 import "@fontsource/righteous";
 
 const ArticleHeader = (props) => {
-  const {title, subtitle, image} = props
+  const { title, subtitle, image } = props;
 
   //set background image if got from props, otherwise put placeholder
   const backgroundImage = image
     ? image
     : `${process.env.PUBLIC_URL}/assets/background-placeholder.jpg`;
- 
- const isNonMobile = useMediaQuery("(min-width:650px)");
+
+  const isNonMobile = useMediaQuery("(min-width:650px)");
+  // also check for small mobile screen as will need to remove text from heading if too small to fit
+  const isSmallScreen = useMediaQuery("(min-width:415px)");
 
   return (
     <>
@@ -36,17 +38,25 @@ const ArticleHeader = (props) => {
         }}
       >
         <Grid item align="center" xs={12}>
-          <Typography variant={isNonMobile ? "h2" : "h3"} fontFamily="Righteous">
+          <Typography
+            variant={isNonMobile ? "h2" : "h3"}
+            paddingTop={isSmallScreen ? "10px" : "8%"}
+            fontFamily="Righteous"
+          >
             {title}
           </Typography>
-          <Typography
-            variant={isNonMobile ? "h5" : "h6"}
-            color="text.primary"
-            fontFamily="Righteous"
-            sx={{ padding: 4}}
-          >
-            {subtitle}
-          </Typography>
+          {isSmallScreen ? (
+            <Typography
+              variant={isNonMobile ? "h5" : "h6"}
+              color="text.primary"
+              fontFamily="Righteous"
+              sx={{ padding: 4 }}
+            >
+              {subtitle}
+            </Typography>
+          ) : (
+            <></>
+          )}
         </Grid>
       </Box>
     </>
