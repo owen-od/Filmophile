@@ -53,7 +53,6 @@ const MoviesContextProvider = (props) => {
       if (user.photoURL) {
         newComment.userPhotoUrl = user.photoURL;
       }
-      console.log("movieId: " + movie.movie.id);
       await setDoc(
         doc(db, "movies", `${movie.movie?.id}`),
         {
