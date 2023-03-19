@@ -20,34 +20,37 @@ export const heroTextureImports = importAll(
   )
 );
 
-const heading1 = (
-  <>
-    <Typography variant="h2" fontFamily="Righteous">
-      Discover story-worthy movie moments
-    </Typography>
-  </>
-);
-
-const heading2 = (
-  <>
-    <Typography variant="h2" fontFamily="Righteous">
-      Take a trip down memory lane
-    </Typography>
-  </>
-);
-
-const heading3 = (
-  <>
-    <Typography variant="h2" fontFamily="Righteous">
-      Join a community of filmophiles
-    </Typography>
-  </>
-);
-
-const headings = [heading1, heading2, heading3];
-
 const MainCarousel = () => {
   const isNonMobile = useMediaQuery("(min-width:650px)");
+
+  //create headings for main carsousel - text smaller on small screen
+  const isSmallScreen = useMediaQuery("(min-width:450px)");
+  const heading1 = (
+    <>
+      <Typography variant={isSmallScreen ? "h2" : "h3"} fontFamily="Righteous">
+        Discover story-worthy movie moments
+      </Typography>
+    </>
+  );
+  
+  const heading2 = (
+    <>
+      <Typography variant={isSmallScreen ? "h2" : "h3"} fontFamily="Righteous">
+        Take a trip down memory lane
+      </Typography>
+    </>
+  );
+  
+  const heading3 = (
+    <>
+      <Typography variant={isSmallScreen ? "h2" : "h3"} fontFamily="Righteous">
+        Join a community of filmophiles
+      </Typography>
+    </>
+  );
+
+  const headings = [heading1, heading2, heading3];
+
   return (
     <Carousel
       infiniteLoop={true}
@@ -92,7 +95,7 @@ const MainCarousel = () => {
             alt={`carousel-${index}`}
             style={{
               width: "100%",
-              height: "700px",
+              height: isSmallScreen ? "700px" : "500px",
               objectFit: "cover",
               backgroundAttachment: "fixed",
             }}
