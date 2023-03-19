@@ -17,7 +17,8 @@ export default function CommentBox(movie) {
           doc.data().comments.forEach((comment) => {
             movieComments.push(comment);
           });
-          setComments(movieComments);
+          //set comments but with items in reverse order to newest comment in first
+          setComments(movieComments.slice().reverse());
         }
       }
     });
