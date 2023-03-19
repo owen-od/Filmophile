@@ -5,7 +5,7 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
-import { IconButton } from "@mui/material";
+import { IconButton, useMediaQuery } from "@mui/material";
 
 // Import css files
 import "slick-carousel/slick/slick.css";
@@ -117,7 +117,9 @@ const MovieCarousel = (movies) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          //centerMode: true,
+          initialSlide: 2,
+          infinite: true,
+          centerMode: true,
           dots: false,
         },
       },

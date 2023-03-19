@@ -18,14 +18,14 @@ function Footer() {
         justifyContent="space-between"
         flexWrap="wrap"
         rowGap="25px"
-        columnGap="clamp(25px, 35px, 45px)"
+        columnGap="clamp(50px, 55px, 65px)"
       >
         <Box width="clamp(30%, 35%, 40%)">
           <Typography
             variant="h4"
             fontWeight="bold"
             mb="15px"
-            color="red"
+            color="primary.main"
             fontFamily="Righteous"
           >
             Filmophile

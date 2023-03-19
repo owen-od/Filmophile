@@ -115,7 +115,9 @@ const CastCarousel = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          //centerMode: true,
+          initialSlide: 2,
+          infinite: true,
+          centerMode: true,
           dots: false,
         },
       },

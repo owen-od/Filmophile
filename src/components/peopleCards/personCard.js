@@ -5,12 +5,16 @@ import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import PersonIcon from '@mui/icons-material/Person';
 import { CssVarsProvider } from "@mui/joy/styles";
+import { useMediaQuery } from "@mui/material";
 
 export default function PersonCard(props) {
   const person = props.person;
+
+  const isNonMobile = useMediaQuery("(min-width:450px)");
+
   return (
     <CssVarsProvider>
-      <Card sx={{ minHeight: "280px", width: 250 }}>
+      <Card sx={{ minHeight: "280px", width: isNonMobile ? 255 : 235 }}>
         <CardCover>
           <img
             src={

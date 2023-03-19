@@ -15,9 +15,12 @@ import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/moviesContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { UserAuth } from '../../context/AuthContext';
+import { useMediaQuery } from "@mui/material";
 
 export default function MovieCard(movie) {
   const { favourites, addToFavourites, removeFromFavourites } = useContext(MoviesContext);
+
+  const isNonMobile = useMediaQuery("(min-width:450px)");
 
   const  { user } = UserAuth();
 
@@ -37,7 +40,7 @@ export default function MovieCard(movie) {
 
   return (
     <CssVarsProvider>
-      <Card variant="outlined" sx={{ width: 255 }}>
+      <Card variant="outlined" sx={{ width: isNonMobile ? 255 : 235 }}>
         <Grid>
           <Grid item xs={11}>
             <Typography
