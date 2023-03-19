@@ -127,6 +127,15 @@ function NavBar() {
                 </NavLink>
               </MenuItem>
             ))}
+            <MenuItem>
+              <NavLink
+                to="/movies/search"
+                onClick={handleCloseNavMenu}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Search
+              </NavLink>
+            </MenuItem>
           </Menu>
         </Box>
 
