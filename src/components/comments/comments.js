@@ -5,6 +5,7 @@ import {
   Grid,
   Typography,
   Box,
+  IconButton,
 } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
@@ -54,7 +55,9 @@ export default function Comment(props) {
                 marginRight: 5,
               }}
             >
-              <FavoriteBorderOutlinedIcon fontSize="small" />
+              <IconButton>
+                <FavoriteBorderOutlinedIcon fontSize="small" />
+              </IconButton>
               {comment.likes}
             </Typography>
           </Box>
