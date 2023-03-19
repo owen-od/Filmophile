@@ -93,7 +93,6 @@ export default function MovieCard(movie) {
                 ? `https://image.tmdb.org/t/p/w500/${movie.movie.poster_path}`
                 : `${process.env.PUBLIC_URL}/assets/poster-placeholder.png`
             }
-            srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
             loading="lazy"
             alt=""
           />

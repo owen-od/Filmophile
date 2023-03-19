@@ -18,7 +18,6 @@ export default function PersonCard(props) {
                 ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
                 : `${process.env.PUBLIC_URL}/assets/poster-placeholder.png`
             }
-            srcSet="https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320&dpr=2 2x"
             loading="lazy"
             alt=""
           />
