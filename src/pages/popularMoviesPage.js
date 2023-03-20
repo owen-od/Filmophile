@@ -8,7 +8,6 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { getPopularMovies } from "../api/movie-api";
-import "@fontsource/righteous";
 
 const PopularMoviesPage = () => {
   const [genreFilter, setGenreFilter] = useState("0");

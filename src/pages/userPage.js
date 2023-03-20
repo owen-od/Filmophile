@@ -1,7 +1,5 @@
 import {
   Grid,
-  Typography,
-  useMediaQuery,
   Divider,
   CircularProgress,
 } from "@mui/material";
@@ -21,8 +19,6 @@ const UserPage = () => {
   const numberOfFavs = favIds.length;
   const numberWatchlist = watchlistIds.length;
   const [value, setValue] = useState(0);
-
-  const isNonMobile = useMediaQuery("(min-width:650px)");
 
   // Create an array of queries and run in parallel.
   const favouriteMovieQueries = useQueries(

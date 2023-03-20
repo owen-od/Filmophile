@@ -8,7 +8,6 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { getUpcomingMovies } from "../api/movie-api";
-import "@fontsource/righteous";
 
 const UpcomingMoviesPage = () => {
   const [genreFilter, setGenreFilter] = useState("0");

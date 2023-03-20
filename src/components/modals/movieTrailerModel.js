@@ -8,7 +8,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { getTrailer } from "../../api/movie-api";
-import "@fontsource/satisfy";
 import ReactPlayer from "react-player";
 
 const MovieTrailerModal = ({ movie }) => {

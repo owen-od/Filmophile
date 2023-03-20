@@ -5,7 +5,6 @@ import { getStreaming } from "../../api/movie-api";
 import { RiNetflixFill } from "react-icons/ri";
 import { SiPrime } from "react-icons/si";
 import { CgUnavailable } from "react-icons/cg";
-import "@fontsource/satisfy";
 
 const StreamingDetails = ({ movie }) => {
   const {

@@ -6,7 +6,6 @@ import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
 import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
-//import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "@fontsource/public-sans";
 import { CssVarsProvider } from "@mui/joy/styles";

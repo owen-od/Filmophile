@@ -19,6 +19,9 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import MoviesContextProvider from "./context/moviesContext";
 import { themeLight, themeDark } from "./theme";
 import ArticlePage from "./pages/articlePage";
+import "@fontsource/righteous";
+import "@fontsource/pacifico";
+import "@fontsource/satisfy";
 
 const queryClient = new QueryClient({
   defaultOptions: {

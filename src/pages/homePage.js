@@ -12,8 +12,6 @@ import { Box, useMediaQuery } from "@mui/material";
 import Footer from "../components/siteFooter/footer";
 import { CircularProgress } from "@mui/material";
 import FeaturedArticleCard from "../components/article/featuredArticleCard";
-import "@fontsource/righteous";
-import "@fontsource/pacifico";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, Box, Avatar, Typography, useMediaQuery } from "@mui/material";
-import "@fontsource/righteous";
 
 const ArticleHeader = (props) => {
   const { title, subtitle, image } = props;

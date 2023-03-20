@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { TextField, InputAdornment, Button } from "@mui/material";
-
 import { MoviesContext } from "../../context/moviesContext";
 import { UserAuth } from "../../context/AuthContext";
 
