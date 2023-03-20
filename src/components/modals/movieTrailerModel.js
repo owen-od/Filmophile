@@ -5,6 +5,7 @@ import {
   CircularProgress,
   Button,
   Modal,
+  useMediaQuery,
 } from "@mui/material";
 import { getTrailer } from "../../api/movie-api";
 import "@fontsource/satisfy";
@@ -12,6 +13,8 @@ import ReactPlayer from "react-player";
 
 const MovieTrailerModal = ({ movie }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isSmallScreen = useMediaQuery("(min-width:450px)");
 
   const handleTrailerButtonClick = () => {
     setIsModalOpen(true);
@@ -68,7 +71,14 @@ const MovieTrailerModal = ({ movie }) => {
           >
             <Box>
               <Button onClick={() => setIsModalOpen(false)}>Close</Button>
-              <ReactPlayer url={trailerUrl} controls={true} />
+              <ReactPlayer
+                url={trailerUrl}
+                controls={true}
+                width={!isSmallScreen ? "395px" : "640px"}
+                height={!isSmallScreen ? "222px" : "360px"}
+                playing={true}
+                sx={{ position: "absolute", top: 0, left: 0 }}
+              />
             </Box>
           </Modal>
         </>
