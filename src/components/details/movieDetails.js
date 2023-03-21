@@ -53,7 +53,7 @@ const MovieDetails = ({ movie }) => {
           bottom: "0px",
           left: "0px",
           opacity: 0.1,
-          zIndex: -1,
+          pointerEvents: "none"
         },
       }}
     >
@@ -113,7 +113,7 @@ const MovieDetails = ({ movie }) => {
               </ListItem>
             </List>
             <MovieTrailerModal movie={movie} />
-            <Paper elevation={3} sx={{ opacity: 0.8 }}>
+            <Paper elevation={3}>
               <Typography
                 sx={{
                   mt: "10px",
