@@ -53,6 +53,7 @@ const MovieDetails = ({ movie }) => {
           bottom: "0px",
           left: "0px",
           opacity: 0.1,
+          zIndex: -1,
         },
       }}
     >
@@ -120,7 +121,6 @@ const MovieDetails = ({ movie }) => {
                   padding: 1,
                   overflowY: "scroll",
                   overflowX: "hidden",
-                  textOverflow: "scroll",
                   display: "-webkit-box",
                   WebkitLineClamp: "6",
                   WebkitBoxOrient: "vertical",
