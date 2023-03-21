@@ -101,6 +101,11 @@ const LoginForm = () => {
           >
             Sign In
           </Button>
+          {error && (
+            <Typography variant="body2" color="error">
+              {error}
+            </Typography>
+          )}
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/register" variant="body2">
