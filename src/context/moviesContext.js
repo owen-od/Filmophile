@@ -24,7 +24,7 @@ const MoviesContextProvider = (props) => {
     if (!user) {
       setFavourites([]);
       setWatchlist([]);
-      console.log("favs" + favourites);
+      //console.log("favs" + favourites);
     } else {
       getUserFavourites();
       getUserWatchlist();

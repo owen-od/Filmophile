@@ -7,7 +7,6 @@ export default function LoginPage() {
 
   //get random number in range to vary image on each page refresh
   const number = Math.floor(Math.random() * (7 - 1 + 1)) + 1;
-  console.log(number)
   //assign image to variable based on random numer
   const image = `${process.env.PUBLIC_URL}/assets/login/cinema-${number}.jpg`;
 
