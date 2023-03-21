@@ -113,7 +113,7 @@ const MovieDetails = ({ movie }) => {
               </ListItem>
             </List>
             <MovieTrailerModal movie={movie} />
-            <Paper elevation={3}>
+            <Paper elevation={3} sx={{ opacity: 0.8 }}>
               <Typography
                 sx={{
                   mt: "10px",
