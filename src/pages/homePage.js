@@ -30,7 +30,7 @@ const HomePage = () => {
         articles.push(doc.data());
         //console.log(doc.id, " => ", doc.data());
       });
-      setLatestArticles(articles);
+      setLatestArticles(articles.slice(0, 2));
     };
     getArticles();
   }, []);
