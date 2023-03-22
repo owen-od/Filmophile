@@ -19,6 +19,8 @@ import { useParams } from "react-router-dom";
 
 const ArticlePage = (props) => {
   const isNonMobile = useMediaQuery("(min-width:650px)");
+  const isNonMediumScreen = useMediaQuery("(min-width:900px)");
+
   const [article, setArticle] = useState({});
   //get article id from url to retrive correct article from Firestore
   const { id } = useParams();
@@ -106,6 +108,7 @@ const ArticlePage = (props) => {
           item
           xs={12}
           md={10}
+          pr={isNonMediumScreen ? 10 : 0}
           display="flex"
           flex-wrap="wrap"
           justifyContent="center"

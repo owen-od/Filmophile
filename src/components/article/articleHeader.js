@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, Avatar, Typography, useMediaQuery } from "@mui/material";
+import { Grid, Box, Typography, useMediaQuery } from "@mui/material";
 
 const ArticleHeader = (props) => {
   const { title, subtitle, image } = props;
@@ -11,7 +11,8 @@ const ArticleHeader = (props) => {
 
   const isNonMobile = useMediaQuery("(min-width:650px)");
   // also check for small mobile screen as will need to remove text from heading if too small to fit
-  const isSmallScreen = useMediaQuery("(min-width:415px)");
+  const isNotSmallScreen = useMediaQuery("(min-width:415px)");
+  const isNotSmallHeight = useMediaQuery("(min-height:1000px)");
 
   return (
     <>
@@ -39,12 +40,12 @@ const ArticleHeader = (props) => {
         <Grid item align="center" xs={12}>
           <Typography
             variant={isNonMobile ? "h2" : "h3"}
-            paddingTop={isSmallScreen ? "10px" : "8%"}
+            paddingTop={isNotSmallScreen ? "10px" : "8%"}
             fontFamily="Righteous"
           >
             {title}
           </Typography>
-          {isSmallScreen ? (
+          {isNotSmallScreen && isNotSmallHeight ? (
             <Typography
               variant={isNonMobile ? "h5" : "h6"}
               color="text.primary"
