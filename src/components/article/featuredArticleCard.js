@@ -26,11 +26,8 @@ function FeaturedArticleCard(props) {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea>
-      <Link
-            to={`/articles/${article.id}`}
-            style={{ textDecoration: "none" }}
-          >
-        <Card sx={{ display: "flex", height: 250 }}>
+        <Link to={`/articles/${article.id}`} style={{ textDecoration: "none" }}>
+          <Card sx={{ display: "flex", height: 250, borderRadius: 2 }}>
             <CardContent sx={{ flex: 1 }}>
               <Typography component="h2" variant="h5">
                 {article.mainTitle}
@@ -54,7 +51,7 @@ function FeaturedArticleCard(props) {
               sx={{ width: 160, display: { xs: "none", sm: "block" } }}
               image={backgroundImage}
             />
-        </Card>
+          </Card>
         </Link>
       </CardActionArea>
     </Grid>
