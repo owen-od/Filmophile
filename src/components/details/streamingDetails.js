@@ -78,35 +78,27 @@ const StreamingDetails = ({ movie }) => {
           Streaming on:{" "}
         </Typography>
         <Box>
-          {providers.includes("Netflix") ? (
+          {providers.includes("Netflix") && (
             <IconButton sx={{ color: "red" }}>
               <RiNetflixFill />
             </IconButton>
-          ) : (
-            <></>
           )}
-          {providers.includes("Amazon Prime Video") ? (
+          {providers.includes("Amazon Prime Video") && (
             <IconButton sx={{ color: "blue", fontSize: "2rem" }}>
               <SiPrime />
             </IconButton>
-          ) : (
-            <></>
           )}
-          {providers.includes("Disney Plus") ? (
+          {providers.includes("Disney Plus") && (
             <IconButton sx={{ color: "black" }}>
               <Typography sx={{ fontSize: "1.1rem", fontFamily: "Satisfy" }}>
                 Disney+
               </Typography>
             </IconButton>
-          ) : (
-            <></>
           )}
-          {!isStreaming ? (
+          {!isStreaming && (
             <IconButton sx={{ color: "black", fontSize: "1.25rem" }}>
               <CgUnavailable />
             </IconButton>
-          ) : (
-            <></>
           )}
         </Box>
       </Box>
