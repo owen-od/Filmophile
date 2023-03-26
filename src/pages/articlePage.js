@@ -7,6 +7,8 @@ import {
   Typography,
   CircularProgress,
   useMediaQuery,
+  Button,
+  IconButton,
 } from "@mui/material";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -16,6 +18,8 @@ import "@fontsource/righteous";
 import ArticleHeader from "../components/article/articleHeader";
 import MovieCarousel from "../components/carousels/movieCarousel";
 import { useParams } from "react-router-dom";
+import RelatedArticlesCard from "../components/article/relatedArticlesCard";
+import { ExpandMore } from "@mui/icons-material";
 
 const ArticlePage = (props) => {
   const isNonMobile = useMediaQuery("(min-width:650px)");
@@ -24,6 +28,8 @@ const ArticlePage = (props) => {
   const [article, setArticle] = useState({});
   //get article id from url to retrive correct article from Firestore
   const { id } = useParams();
+  //state to toggle related article section of page
+  const [more, setMore] = useState(false);
 
   //get article from Firestore when page renders
   useEffect(() => {
@@ -77,6 +83,11 @@ const ArticlePage = (props) => {
   };
   const date = article.dateAdded.toDate().toLocaleDateString("en-IE", options);
 
+  //open or close end section to page
+  function handleClick() {
+    setMore(!more);
+  }
+
   return (
     <>
       <ArticleHeader
@@ -94,11 +105,14 @@ const ArticlePage = (props) => {
           maxWidth="100%"
           sx={{ mt: 3 }}
         >
-          <Avatar sx={{ width: 150, height: 150, mt: 2 }} src={
+          <Avatar
+            sx={{ width: 150, height: 150, mt: 2 }}
+            src={
               article.authorImageUrl
                 ? `${article.authorImageUrl}`
                 : `${process.env.PUBLIC_URL}/assets/poster-placeholder.png`
-            }></Avatar>
+            }
+          ></Avatar>
           <Typography variant="subtitle2" sx={{ padding: 1 }}>
             By: {article.author}
           </Typography>
@@ -149,12 +163,7 @@ const ArticlePage = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        item
-        xs={8}
-        alignItems="center"
-        sx={{ paddingBottom: "10px" }}
-      >
+      <Grid item xs={8} alignItems="center" sx={{ paddingBottom: "10px" }}>
         <Box
           paddingRight={isNonMobile ? 10 : 3}
           paddingLeft={isNonMobile ? 10 : 3}
@@ -184,6 +193,48 @@ const ArticlePage = (props) => {
           <MovieCarousel movies={displayedMovies}></MovieCarousel>
         </Box>
       </Grid>
+      <Grid container xs={12} justifyContent="center" alignItems="center">
+        <Button onClick={handleClick}>
+          <Typography
+            fontFamily="Righteous"
+            mb="10px"
+            sx={{ display: "flex", alignItems: "center" }}
+          >
+            <IconButton aria-label="more" size="large">
+              <ExpandMore fontSize="inherit" />
+            </IconButton>
+            See more
+          </Typography>
+        </Button>
+      </Grid>
+      {more && (
+        <Grid
+          container
+          xs={12}
+          pt={5}
+          pb={5}
+          display="flex"
+          flex-wrap="wrap"
+          justifyContent="center"
+          sx={{ backgroundColor: "background.accent" }}
+        >
+          <Grid item xs={12}>
+            <Typography
+              variant="h4"
+              align="center"
+              pb={2}
+              fontFamily="Righteous"
+            >
+              Explore related articles
+            </Typography>
+          </Grid>
+          {article.relatedArticles.map((articleId, key) => (
+            <Grid item p={3}>
+              <RelatedArticlesCard id={articleId} index={key} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
       <Footer />
     </>
   );
