@@ -14,6 +14,7 @@ import { CircularProgress } from "@mui/material";
 import FeaturedArticleCard from "../components/article/featuredArticleCard";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [articles, setLatestArticles] = useState([]);
@@ -103,7 +104,9 @@ const HomePage = () => {
               letterSpacing={1.5}
               align="center"
               p={1}
-            >Filmophile</Typography>
+            >
+              Filmophile
+            </Typography>
           </Grid>
 
           <Grid
@@ -127,18 +130,19 @@ const HomePage = () => {
               >
                 Classic films
               </Typography>
-              <Typography
-                color="secondary.main"
-                variant="h4"
-                fontFamily="Righteous"
-                align="center"
-                pb={3}
-              >
-                Explore the best
-              </Typography>
+              <Link to="/movies/top" style={{ textDecoration: "none" }}>
+                <Typography
+                  color="secondary.main"
+                  variant="h4"
+                  fontFamily="Righteous"
+                  align="center"
+                  pb={3}
+                >
+                  Explore the best
+                </Typography>
+              </Link>
               <MovieCarousel movies={topMovies}></MovieCarousel>
             </Box>
-
             <Grid container sx={{ backgroundColor: "background.accent" }}>
               <Grid item xs={12}>
                 <Typography
@@ -164,10 +168,7 @@ const HomePage = () => {
               </Grid>
               <Grid container spacing={4} pb={15}>
                 {articles.map((article) => (
-                  <FeaturedArticleCard
-                    key={article.id}
-                    article={article}
-                  />
+                  <FeaturedArticleCard key={article.id} article={article} />
                 ))}
               </Grid>
             </Grid>
@@ -185,15 +186,17 @@ const HomePage = () => {
               >
                 In the spotlight
               </Typography>
-              <Typography
-                color="secondary.main"
-                variant="h4"
-                fontFamily="Righteous"
-                align="center"
-                pb={3}
-              >
-                See what's popular now
-              </Typography>
+              <Link to="/movies/popular" style={{ textDecoration: "none" }}>
+                <Typography
+                  color="secondary.main"
+                  variant="h4"
+                  fontFamily="Righteous"
+                  align="center"
+                  pb={3}
+                >
+                  See what's popular now
+                </Typography>
+              </Link>
               <MovieCarousel movies={popularMovies}></MovieCarousel>
             </Box>
           </Grid>
@@ -217,16 +220,18 @@ const HomePage = () => {
               >
                 Go to the movies
               </Typography>
-              <Typography
-                color="secondary.main"
-                variant="h4"
-                pl={2}
-                fontFamily="Righteous"
-                align="center"
-                pb={3}
-              >
-                Discover upcoming movies
-              </Typography>
+              <Link to="/movies/upcoming" style={{ textDecoration: "none" }}>
+                <Typography
+                  color="secondary.main"
+                  variant="h4"
+                  pl={2}
+                  fontFamily="Righteous"
+                  align="center"
+                  pb={3}
+                >
+                  Discover upcoming movies
+                </Typography>
+              </Link>
               <MovieCarousel movies={upcomingMovies}></MovieCarousel>
             </Box>
           </Grid>
