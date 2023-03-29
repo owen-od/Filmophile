@@ -62,7 +62,7 @@ const PopularMoviesPage = () => {
 
   const pageChange = (value) => {
     setPageNumber(value);
-    console.log("Change popular movies page number to " + value);
+    //console.log("Change popular movies page number to " + value);
     localStorage.setItem("popularMoviesPage", value);
   };
 

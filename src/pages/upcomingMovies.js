@@ -62,7 +62,7 @@ const UpcomingMoviesPage = () => {
 
   const pageChange = (value) => {
     setPageNumber(value);
-    console.log("Change upcoming movies page number to " + value);
+    //console.log("Change upcoming movies page number to " + value);
     localStorage.setItem("upcomingMoviesPage", value);
   };
 

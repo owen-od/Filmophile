@@ -61,7 +61,7 @@ const TopMoviesPage = (props) => {
 
   const pageChange = (value) => {
     setPageNumber(value);
-    console.log("Change top rated movies page number to " + value);
+    //console.log("Change top rated movies page number to " + value);
     localStorage.setItem("topMoviesPage", value);
   };
 

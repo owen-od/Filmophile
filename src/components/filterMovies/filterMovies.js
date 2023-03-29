@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -22,11 +22,11 @@ function FilterMovies(props) {
 
   const { filters, onUserInput } = props;
 
-  //access initial filter and sorting options I passed as props 
-const genreFilter = filters.genreFilter;
-const ratingFilter = filters.ratingFilter;
-const textFilter = filters.textFilter;
-const movieSorter = filters.movieSorter;
+  //access initial filter and sorting options I passed as props
+  const genreFilter = filters.genreFilter;
+  const ratingFilter = filters.ratingFilter;
+  const textFilter = filters.textFilter;
+  const movieSorter = filters.movieSorter;
 
   if (isLoading) {
     return (
@@ -160,8 +160,12 @@ const movieSorter = filters.movieSorter;
               onChange={handleSortChange}
             >
               <MenuItem value="title">Title</MenuItem>
-              <MenuItem value="release_date_asc">Release Date (newest first)</MenuItem>
-              <MenuItem value="release_date_desc">Release Date (oldest first)</MenuItem>
+              <MenuItem value="release_date_asc">
+                Release Date (newest first)
+              </MenuItem>
+              <MenuItem value="release_date_desc">
+                Release Date (oldest first)
+              </MenuItem>
               <MenuItem value="rating_asc">Rating (lowest first)</MenuItem>
               <MenuItem value="rating_desc">Rating (highest first)</MenuItem>
               );
