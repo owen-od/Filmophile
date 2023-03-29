@@ -4,8 +4,13 @@ import Stack from "@mui/material/Stack";
 
 export default function MoviePagination({ pageNumber, pageChange }) {
   const handleChange = (event, value) => {
+    //change page
     pageChange(value);
-    // console.log(value);
+    // Add a smooth scroll effect and go back to top of page
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   return (
