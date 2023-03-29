@@ -152,7 +152,10 @@ function FilterMovies(props) {
               onChange={handleSortChange}
             >
               <MenuItem value="title">Title</MenuItem>
-              <MenuItem value="release_date">Release Date</MenuItem>
+              <MenuItem value="release_date_asc">Release Date (newest first)</MenuItem>
+              <MenuItem value="release_date_desc">Release Date (oldest first)</MenuItem>
+              <MenuItem value="rating_asc">Rating (lowest first)</MenuItem>
+              <MenuItem value="rating_desc">Rating (highest first)</MenuItem>
               );
             </Select>
           </FormControl>

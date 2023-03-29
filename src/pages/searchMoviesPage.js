@@ -49,7 +49,19 @@ const SearchMoviesPage = () => {
     .filter((m) => {
       return m.vote_average > ratingFilter;
     })
-    .sort((a, b) => a[movieSorter].localeCompare(b[movieSorter]));
+    .sort((a, b) => {
+      if (movieSorter === "release_date_desc") {
+        return a["release_date"].localeCompare(b["release_date"]);
+      } else if (movieSorter === "release_date_asc") {
+        return b["release_date"].localeCompare(a["release_date"]);
+      } else if (movieSorter === "rating_desc") {
+        return b["vote_average"] - a["vote_average"];
+      } else if (movieSorter === "rating_asc") {
+        return a["vote_average"] - b["vote_average"];
+      } else {
+        return 0;
+      }
+    });
 
   const handleChange = (type, value) => {
     if (type === "rating") {
