@@ -47,7 +47,7 @@ const MovieCarousel = (movies) => {
   const settings = {
     dots: false,
     arrows: true,
-    infinite: `{movies.length>8}`,
+    infinite: movies.length > 8 ? true : false,
     speed: 750,
     centerMode: false,
     slidesToShow: 8,
