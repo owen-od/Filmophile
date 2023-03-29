@@ -20,6 +20,14 @@ function FilterMovies(props) {
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
   const ratings = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+  const { filters, onUserInput } = props;
+
+  //access initial filter and sorting options I passed as props 
+const genreFilter = filters.genreFilter;
+const ratingFilter = filters.ratingFilter;
+const textFilter = filters.textFilter;
+const movieSorter = filters.movieSorter;
+
   if (isLoading) {
     return (
       <div sx={{ display: "flex", justifyContent: "center" }}>
@@ -38,7 +46,7 @@ function FilterMovies(props) {
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
-    props.onUserInput(type, value);
+    onUserInput(type, value);
   };
 
   const handleGenreChange = (e) => {
@@ -74,7 +82,7 @@ function FilterMovies(props) {
               label="Search movies"
               type="search"
               variant="outlined"
-              value={props.textFilter}
+              value={textFilter}
               onChange={handleTextChange}
               sx={{
                 minWidth: "250px",
@@ -92,7 +100,7 @@ function FilterMovies(props) {
                 labelId="genre-label"
                 id="genre-select"
                 label="genre"
-                value={props.genreFilter}
+                value={genreFilter}
                 onChange={handleGenreChange}
               >
                 {genres.map((genre) => {
@@ -115,7 +123,7 @@ function FilterMovies(props) {
                 id="rating-select"
                 label="rating"
                 minWidth="200px"
-                value={props.ratingFilter}
+                value={ratingFilter}
                 onChange={handleRatingChange}
               >
                 {ratings.map((rating) => {
@@ -148,7 +156,7 @@ function FilterMovies(props) {
               labelId="sort-label"
               id="sort-select"
               label="sort option"
-              value={props.movieSorter}
+              value={movieSorter}
               onChange={handleSortChange}
             >
               <MenuItem value="title">Title</MenuItem>

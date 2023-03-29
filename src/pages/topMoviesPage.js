@@ -8,15 +8,10 @@ import { useQuery } from "react-query";
 import { CircularProgress } from "@mui/material";
 import { getTopMovies } from "../api/movie-api";
 import { useState } from "react";
+import { useDisplayedMovies } from "../hooks/useFilterSortMovies";
 
 const TopMoviesPage = (props) => {
-  const [genreFilter, setGenreFilter] = useState("0");
-  const [ratingFilter, setRatingFilter] = useState("0");
-  const [textFilter, setTextFilter] = useState("");
-  const [movieSorter, setmovieSorter] = useState("title");
-
-  const genreId = Number(genreFilter);
-
+  
   const cachedPage = parseInt(localStorage.getItem("topMoviesPage"));
   let defaultPage = 1;
   //const movies = props.movies;
@@ -34,6 +29,18 @@ const TopMoviesPage = (props) => {
       keepPreviousData: true,
     }
   );
+  const movies = data ? data.results : [];
+
+  //logic for displayed movies and change of filter/sorting options in custom hook
+  const { displayedMovies, handleChange } = useDisplayedMovies(movies);
+
+  //initial filters to pass down to filterMovies component as props
+  const initialFilters = {
+    genreFilter: "0",
+    ratingFilter: "0",
+    textFilter: "",
+    movieSorter: "title",
+  };
 
   if (isLoading) {
     return (
@@ -51,44 +58,6 @@ const TopMoviesPage = (props) => {
       </span>
     );
   }
-
-  const movies = data.results;
-
-  let displayedMovies = movies
-    .filter((m) => {
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-    })
-    .filter((m) => {
-      return m.title.toLowerCase().search(textFilter.toLowerCase()) !== -1;
-    })
-    .filter((m) => {
-      return m.vote_average > ratingFilter;
-    })
-    .sort((a, b) => {
-      if (movieSorter === "release_date_desc") {
-        return a["release_date"].localeCompare(b["release_date"]);
-      } else if (movieSorter === "release_date_asc") {
-        return b["release_date"].localeCompare(a["release_date"]);
-      } else if (movieSorter === "rating_desc") {
-        return b["vote_average"] - a["vote_average"];
-      } else if (movieSorter === "rating_asc") {
-        return a["vote_average"] - b["vote_average"];
-      } else {
-        return 0;
-      }
-    });
-
-  const handleChange = (type, value) => {
-    if (type === "rating") {
-      setRatingFilter(value);
-    } else if (type === "text") {
-      setTextFilter(value);
-    } else if (type === "sort") {
-      setmovieSorter(value);
-    } else {
-      setGenreFilter(value);
-    }
-  };
 
   const pageChange = (value) => {
     setPageNumber(value);
@@ -111,11 +80,8 @@ const TopMoviesPage = (props) => {
           sx={{ mb: 3, mt: 3 }}
         >
           <FilterMovies
-            genreFilter={genreFilter}
             onUserInput={handleChange}
-            ratingFilter={ratingFilter}
-            textFilter={textFilter}
-            movieSorter={movieSorter}
+            filters={initialFilters}
           />
         </Grid>
         <Grid
