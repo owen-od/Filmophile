@@ -75,7 +75,7 @@ const UserDetails = (props) => {
           {user.email}
         </Typography>
         <Avatar
-          alt="User Image"
+          alt=""
           src={user.photoURL ? user.photoURL : "/static/images/avatar/2.jpg"}
           sx={{ width: 220, height: 220, mt: 2 }}
         ></Avatar>
