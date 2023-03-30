@@ -33,7 +33,7 @@ export const useDisplayedMovies = (movies) => {
           return 0;
         }
       });
-    setDisplayedMovies(filteredMovies);
+      setDisplayedMovies(filteredMovies);
   }, [movies, genreId, textFilter, ratingFilter, movieSorter]);
 
   const handleChange = (type, value) => {
@@ -48,5 +48,5 @@ export const useDisplayedMovies = (movies) => {
     }
   };
 
-  return { displayedMovies, handleChange };
+  return { displayedMovies, genreFilter, ratingFilter, textFilter, movieSorter, genreId, handleChange };
 };

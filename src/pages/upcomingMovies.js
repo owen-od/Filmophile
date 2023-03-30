@@ -33,15 +33,7 @@ const UpcomingMoviesPage = () => {
   const movies = data ? data.results : [];
 
   //logic for displayed movies and change of filter/sorting options in custom hook
-  const { displayedMovies, handleChange } = useDisplayedMovies(movies);
-
-  //initial filters to pass down to filterMovies component as props
-  const initialFilters = {
-    genreFilter: "0",
-    ratingFilter: "0",
-    textFilter: "",
-    movieSorter: "title",
-  };
+  const { displayedMovies, genreFilter, ratingFilter, textFilter, movieSorter, handleChange } = useDisplayedMovies(movies);
 
   if (isLoading) {
     return (
@@ -82,7 +74,10 @@ const UpcomingMoviesPage = () => {
         >
           <FilterMovies
             onUserInput={handleChange}
-            filters={initialFilters} 
+            genreFilter={genreFilter}
+            ratingFilter={ratingFilter}
+            textFilter={textFilter}
+            movieSorter={movieSorter}
           />
         </Grid>
         <Grid
