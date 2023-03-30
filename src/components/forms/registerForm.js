@@ -48,6 +48,7 @@ export default function SignUp() {
       setError(e.message);
       console.log(e.message);
     }
+
   };
 
   return (
@@ -128,6 +129,11 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
+          {error && (
+            <Typography variant="body2" color="error">
+              {error}
+            </Typography>
+          )}
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">

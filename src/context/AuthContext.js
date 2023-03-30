@@ -26,15 +26,18 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
 
-  const createUser = (email, password) => {
-    //create new user with Firebase authentication
-    if (createUserWithEmailAndPassword(auth, email, password)) {
-      //if success:
-      //add new user entry to Firestore and create empty array for favs and watchlist
-      setDoc(doc(db, "users", email), {
+  const createUser = async (email, password) => {
+    try {
+      // create new user with Firebase authentication
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // add new user entry to Firestore and create empty array for favs and watchlist
+      await setDoc(doc(db, "users", email), {
         favourites: [],
         watchlist: [],
       });
+      return userCredential.user;
+    } catch (error) {
+      throw error;
     }
   };
 
