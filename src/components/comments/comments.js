@@ -10,10 +10,13 @@ import {
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { MoviesContext } from "../../context/moviesContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { UserAuth } from "../../context/AuthContext";
 
 export default function Comment(props) {
   const comment = props.comment;
   const index = props.movieIndex;
+
+  const { user } = UserAuth();
 
   //get liked comments and functions to change from movie context provider
   const { likes, incrementCommentLikes, decreaseCommentLikes } =
@@ -70,13 +73,19 @@ export default function Comment(props) {
                 marginRight: 5,
               }}
             >
-              {!likes.includes(comment.id) ? (
-                <IconButton onClick={handleAddToLikes}>
-                  <FavoriteBorderOutlinedIcon fontSize="small" />
-                </IconButton>
+              {user ? (
+                !likes.includes(comment.id) ? (
+                  <IconButton onClick={handleAddToLikes}>
+                    <FavoriteBorderOutlinedIcon fontSize="small" />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={handleRemoveFromLikes}>
+                    <FavoriteIcon fontSize="small" color="primary" />
+                  </IconButton>
+                )
               ) : (
-                <IconButton onClick={handleRemoveFromLikes}>
-                  <FavoriteIcon fontSize="small" color="primary" />
+                <IconButton disabled>
+                  <FavoriteBorderOutlinedIcon fontSize="small" />
                 </IconButton>
               )}
               {comment.likes}
