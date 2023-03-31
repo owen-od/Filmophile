@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+# Filmophile web application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Name: Owen O'Donnell 
 
-## Available Scripts
+## Overview.
 
-In the project directory, you can run:
+Inspired by a love of cinema, Filmophile is a web application for movie fans. With an emphasis on community, it offers tools for managing personal viewing, sharing opinions, discovering new titles and learning about film through curated editorial content and recommendations. Filmophile merges functionality, social interaction, and educational aspects, providing a comprehensive movie experience to users.
 
-### `npm start`
+Built with React.js, Material UI, and Joy UI, the application is fully responsive. Firebase powers authentication and data storage, while the Movie Database API serves as the source of data on movies. The application is deployed using AWS Amplify.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project was submitted as part of the requirements of the Higher Diploma in Computer Science in SETU. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup requirements.
 
-### `npm test`
+To use this, project the first step is to clone the repository: 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
++ Clone the repository with the following command: `git clone https://github.com/owen-od/filmophile`
 
-### `npm run build`
+You will then have to create .env file in your directory and add some details for Firebase and the TMDB api. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+First, as the web application uses the TMDB api key, you will need to get an API key. Then, add the below to your .env file: 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+REACT_APP_TMDB_KEY=[Your API key]
+FAST_REFRESH=false
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Second, you must now set up a Firebase project and configure your app with your Firebase credentials. Follow these steps to do so:
 
-### `npm run eject`
++ Create a Firebase project on the Firebase console.
++ Enable Firebase Authentication, Firestore Database and Firebase Storage for the project.
++ Copy the Firebase config object from the Firebase console.
++ Add the values from this object to the .env file in the root directory of the project. 
++ Install Firebase dependencies by running npm install firebase.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Note that the Firebase config values at point 4 should look like the below in the .env file:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+REACT_APP_FIREBASE_API_KEY=[Your value here]
+REACT_APP_FIREBASE_AUTHDOMAIN=[Your value here]
+REACT_APP_FIREBASE_PROJECTID=[Your value here]
+REACT_APP_FIREBASE_STORAGEBUCKET=[Your value here]
+REACT_APP_FIREBASE_MESSAGINGSENDERID=[Your value here]
+REACT_APP_FIREBASE_APPID=[Your value here]
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The firebase.js file in the project is already set up to grab these values. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Now you can install all the other dependencies by running `npm install` 
 
-## Learn More
+Finally, you can now run the application by running `npm start`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application currently includes the below features: 
 
-### Code Splitting
+- View sample of top, upcoming and popular movies on movie sliders on home page.
+- View latest curated articles/features on home page.
+- Read curated articles/content. View and navigate to movies associated with articles/content. 
+- View/navigate to associated articles/content. 
+- View all top, upcoming and popular movies on individual pages
+- Navigate through top, upcoming and popular movies by page (which brings user back to top when page changed). 
+- Search for movies based on text input.
+- Sort movies based on a number of criteria, such as rating (asc and desc), release date (asc and desc), title. 
+- Filter movies based on a number of criteria such as genre and rating. 
+- View detailed information on movies such as description, genres, runtime, rating, cast.
+- Watch trailer for movies in modal on movies pages.
+- Check if movie streaming on common streaming platforms (currently support Netflix, Prime and Disney+)
+- View related/recommended movies on each movie page. 
+- Add comments on movies in comment feed on movie pages.
+- View comments of other users on movies.
+- Like comments of other users of movies.
+- Add movies to favourites, which can be viewed on user page.
+- Add movies to watchlist, which can be viewed on user page.
+- Add user profile image.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Graphics/UI
 
-### Analyzing the Bundle Size
+The below project image gives an example of the UI of the project. The application is also fully responsive and should work on all devices. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Project Image](/public/assets/projectImage.PNG)
 
-### Making a Progressive Web App
+## References
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Below are some further references to resources consulting during development. 
 
-### Advanced Configuration
+- Movie Slider
+  - [link](https://react-slick.neostack.com/docs/get-started)
+  
+- Text overflow 
+  - [link](https://stackoverflow.com/questions/63592567/material-ui-text-ellipsis-after-two-line)
+  
+- Home page carousel
+  - [link](https://www.npmjs.com/package/react-responsive-carousel)
+  - [link](https://www.youtube.com/watch?v=EBCdyQ_HFMo&list=PLs0RSZipvGCQT-4MXO0bssf_mXCq3VfQu&index=2&ab_channel=EdRoh)
+  
+- Comment Box
+  - [link](https://codesandbox.io/s/comment-box-with-material-ui-10p3c?file=/src/index.js:0-7705)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Scrollbar: 
+  - [link](https://stackoverflow.com/questions/53772429/mui-how-can-i-style-the-scrollbar-with-css-in-js)
+  
+- Forms:
+  - [link](https://www.freecodecamp.org/news/how-to-create-forms-in-react-using-react-hook-form/)
+  
+- Background image opacity:
+  - [link](https://coder-coder.com/background-image-opacity/)
+  
+- Input adornment:
+  - [link](https://stackoverflow.com/questions/58080512/how-to-add-a-button-on-the-right-of-the-textfield)
 
-### Deployment
+- Smooth scroll to top of page:
+  - [link](https://stackoverflow.com/questions/15935318/smooth-scroll-to-top)
+  
+- Additional MUI sample components:
+  - [link](https://mui.com/material-ui/getting-started/templates/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Firebase 
+  - [link](https://www.youtube.com/watch?v=PJCr_aoOv68&t=2424s&ab_channel=CodeCommerce)
+  - [link](https://www.youtube.com/watch?v=drF8HbnW87w&ab_channel=CodeCommerce)
+  
 
-### `npm run build` fails to minify
+## Project demo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A video demo of the project is available on Youtube at the following url [url]
