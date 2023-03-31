@@ -56,7 +56,12 @@ export default function CommentBox(movie) {
         {comments.length > 0 ? (
           <>
             {comments.map((comment, index) => (
-              <Comment comment={comment} key={index} />
+              <Comment
+                comment={comment}
+                movieId={movie.movie.id}
+                movieIndex={comments.length - index - 1}
+                key={index}
+              />
             ))}
           </>
         ) : (

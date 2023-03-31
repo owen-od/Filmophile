@@ -34,6 +34,7 @@ export const AuthContextProvider = ({ children }) => {
       await setDoc(doc(db, "users", email), {
         favourites: [],
         watchlist: [],
+        likes: [],
       });
       return userCredential.user;
     } catch (error) {

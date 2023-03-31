@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Divider,
   Avatar,
@@ -8,9 +8,16 @@ import {
   IconButton,
 } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { MoviesContext } from "../../context/moviesContext";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function Comment(props) {
   const comment = props.comment;
+  const index = props.movieIndex;
+
+  //get liked comments and functions to change from movie context provider
+  const { likes, incrementCommentLikes, decreaseCommentLikes } =
+    useContext(MoviesContext);
 
   //get date from Firebase timestamp saved with comment and format
   const options = {
@@ -21,6 +28,14 @@ export default function Comment(props) {
   };
   const date = comment.dateAdded.toDate().toLocaleDateString("en-IE", options);
   //console.log(comment.dateAdded.toDate().toLocaleDateString('en-IE', options))
+
+  //call functions to increase or decrease number of likes of comments and add/remove from user liked comments
+  const handleAddToLikes = () => {
+    incrementCommentLikes(props.movieId, index, comment.id);
+  };
+  const handleRemoveFromLikes = () => {
+    decreaseCommentLikes(props.movieId, index, comment.id);
+  };
 
   return (
     <>
@@ -55,9 +70,15 @@ export default function Comment(props) {
                 marginRight: 5,
               }}
             >
-              <IconButton>
-                <FavoriteBorderOutlinedIcon fontSize="small" />
-              </IconButton>
+              {!likes.includes(comment.id) ? (
+                <IconButton onClick={handleAddToLikes}>
+                  <FavoriteBorderOutlinedIcon fontSize="small" />
+                </IconButton>
+              ) : (
+                <IconButton onClick={handleRemoveFromLikes}>
+                  <FavoriteIcon fontSize="small" color="primary" />
+                </IconButton>
+              )}
               {comment.likes}
             </Typography>
           </Box>
