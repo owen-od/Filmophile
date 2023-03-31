@@ -13,22 +13,23 @@ import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/moviesContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { UserAuth } from '../../context/AuthContext';
+import { UserAuth } from "../../context/AuthContext";
 import { useMediaQuery } from "@mui/material";
 
 export default function MovieCard(movie) {
-  const { favourites, addToFavourites, removeFromFavourites } = useContext(MoviesContext);
+  const { favourites, addToFavourites, removeFromFavourites } =
+    useContext(MoviesContext);
 
   const isNonMobile = useMediaQuery("(min-width:450px)");
 
-  const  { user } = UserAuth();
+  const { user } = UserAuth();
 
   const handleAddToFavourites = (movie) => {
     if (!user) {
-      alert ("Please log in to add movies to favourites") 
+      alert("Please log in to add movies to favourites");
     } else {
-    addToFavourites(movie);
-    console.log(favourites);
+      addToFavourites(movie);
+      console.log(favourites);
     }
   };
 
@@ -67,7 +68,7 @@ export default function MovieCard(movie) {
                 onClick={() => handleAddToFavourites(movie.movie)}
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               >
-                <FavoriteBorderIcon sx={{color: "red"}} />
+                <FavoriteBorderIcon sx={{ color: "red" }} />
               </IconButton>
             ) : (
               <IconButton
@@ -78,7 +79,7 @@ export default function MovieCard(movie) {
                 onClick={() => handleRemoveFromFavourites(movie.movie)}
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               >
-                <FavoriteIcon sx={{color: "red", fontSize: "1.6rem"}} />
+                <FavoriteIcon sx={{ color: "red", fontSize: "1.6rem" }} />
               </IconButton>
             )}
           </Grid>
@@ -114,7 +115,7 @@ export default function MovieCard(movie) {
             size="sm"
             color="neutral"
             aria-label="Explore Bahamas Islands"
-            sx={{ ml: "auto", fontWeight: 600, }}
+            sx={{ ml: "auto", fontWeight: 600 }}
           >
             More info
           </Button>
