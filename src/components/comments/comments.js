@@ -11,6 +11,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import { MoviesContext } from "../../context/moviesContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { UserAuth } from "../../context/AuthContext";
+import { useState } from "react";
 
 export default function Comment(props) {
   const comment = props.comment;
@@ -32,12 +33,27 @@ export default function Comment(props) {
   const date = comment.dateAdded.toDate().toLocaleDateString("en-IE", options);
   //console.log(comment.dateAdded.toDate().toLocaleDateString('en-IE', options))
 
+   //state used to disable like/dislike when like/dislike being processed - stops multiple likes/dislikes
+   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
   //call functions to increase or decrease number of likes of comments and add/remove from user liked comments
   const handleAddToLikes = () => {
-    incrementCommentLikes(props.movieId, index, comment.id);
+    if (!isButtonDisabled) {
+      setIsButtonDisabled(true);
+      incrementCommentLikes(props.movieId, index, comment.id);
+      setTimeout(() => {
+        setIsButtonDisabled(false);
+      }, 1000);
+    }
   };
   const handleRemoveFromLikes = () => {
-    decreaseCommentLikes(props.movieId, index, comment.id);
+    if (!isButtonDisabled) {
+      setIsButtonDisabled(true);
+      decreaseCommentLikes(props.movieId, index, comment.id);
+      setTimeout(() => {
+        setIsButtonDisabled(false);
+      }, 1000);
+    }
   };
 
   return (
@@ -75,11 +91,11 @@ export default function Comment(props) {
             >
               {user ? (
                 !likes.includes(comment.id) ? (
-                  <IconButton onClick={handleAddToLikes}>
+                  <IconButton onClick={handleAddToLikes} disabled={isButtonDisabled}>
                     <FavoriteBorderOutlinedIcon fontSize="small" />
                   </IconButton>
                 ) : (
-                  <IconButton onClick={handleRemoveFromLikes}>
+                  <IconButton onClick={handleRemoveFromLikes} disabled={isButtonDisabled}>
                     <FavoriteIcon fontSize="small" color="primary" />
                   </IconButton>
                 )
