@@ -78,48 +78,38 @@ The application currently includes the below features:
 
 The below project image gives an example of the UI of the project. The application is also fully responsive and should work on all devices. 
 
-![Project Image](/public/assets/projectImage.PNG)
+![Project Image](/public/assets/projectImage.png)
 
 ## References
 
 Below are some further references to resources consulting during development. 
 
-- Movie Slider
-  - [link](https://react-slick.neostack.com/docs/get-started)
+- Movie Slider: [link](https://react-slick.neostack.com/docs/get-started)
   
-- Text overflow 
-  - [link](https://stackoverflow.com/questions/63592567/material-ui-text-ellipsis-after-two-line)
+- Text overflow: [link](https://stackoverflow.com/questions/63592567/material-ui-text-ellipsis-after-two-line)
   
 - Home page carousel
   - [link](https://www.npmjs.com/package/react-responsive-carousel)
   - [link](https://www.youtube.com/watch?v=EBCdyQ_HFMo&list=PLs0RSZipvGCQT-4MXO0bssf_mXCq3VfQu&index=2&ab_channel=EdRoh)
   
-- Comment Box
-  - [link](https://codesandbox.io/s/comment-box-with-material-ui-10p3c?file=/src/index.js:0-7705)
+- Comment Box: [link](https://codesandbox.io/s/comment-box-with-material-ui-10p3c?file=/src/index.js:0-7705)
 
-- Scrollbar: 
-  - [link](https://stackoverflow.com/questions/53772429/mui-how-can-i-style-the-scrollbar-with-css-in-js)
+- Scrollbar: [link](https://stackoverflow.com/questions/53772429/mui-how-can-i-style-the-scrollbar-with-css-in-js)
   
-- Forms:
-  - [link](https://www.freecodecamp.org/news/how-to-create-forms-in-react-using-react-hook-form/)
+- Forms: [link](https://www.freecodecamp.org/news/how-to-create-forms-in-react-using-react-hook-form/)
   
-- Background image opacity:
-  - [link](https://coder-coder.com/background-image-opacity/)
+- Background image opacity: [link](https://coder-coder.com/background-image-opacity/)
   
-- Input adornment:
-  - [link](https://stackoverflow.com/questions/58080512/how-to-add-a-button-on-the-right-of-the-textfield)
+- Input adornment: [link](https://stackoverflow.com/questions/58080512/how-to-add-a-button-on-the-right-of-the-textfield)
 
-- Smooth scroll to top of page:
-  - [link](https://stackoverflow.com/questions/15935318/smooth-scroll-to-top)
+- Smooth scroll to top of page: [link](https://stackoverflow.com/questions/15935318/smooth-scroll-to-top)
   
-- Additional MUI sample components:
-  - [link](https://mui.com/material-ui/getting-started/templates/)
+- Additional MUI sample components: [link](https://mui.com/material-ui/getting-started/templates/)
 
 - Firebase 
   - [link](https://www.youtube.com/watch?v=PJCr_aoOv68&t=2424s&ab_channel=CodeCommerce)
   - [link](https://www.youtube.com/watch?v=drF8HbnW87w&ab_channel=CodeCommerce)
   
-
 ## Project demo
 
 A video demo of the project is available on Youtube at the following url [url]
