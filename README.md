@@ -2,7 +2,7 @@
 
 Name: Owen O'Donnell 
 
-## Overview.
+## Overview
 
 Inspired by a love of cinema, Filmophile is a web application for movie fans. With an emphasis on community, it offers tools for managing personal viewing, sharing opinions, discovering new titles and learning about film through curated editorial content and recommendations. Filmophile merges functionality, social interaction, and educational aspects, providing a comprehensive movie experience to users.
 
@@ -10,7 +10,7 @@ Built with React.js, Material UI, and Joy UI, the application is fully responsiv
 
 The project was submitted as part of the requirements of the Higher Diploma in Computer Science in SETU. 
 
-## Setup requirements.
+## Setup requirements
 
 To use this project the first step is to clone the repository: 
 
@@ -79,6 +79,13 @@ The application currently includes the below features:
 The below project image gives an example of the UI of the project. The application is also fully responsive and should work on all devices. 
 
 ![Project Image](/public/assets/projectImage.png)
+
+## Test User
+
+To test member features of the application without creating an account the below user details may be used: 
+
+- Email: homer@simpson.com
+- Password: secretpassword
 
 ## References
 
