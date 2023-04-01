@@ -12,7 +12,7 @@ The project was submitted as part of the requirements of the Higher Diploma in C
 
 ## Setup requirements.
 
-To use this, project the first step is to clone the repository: 
+To use this project the first step is to clone the repository: 
 
 + Clone the repository with the following command: `git clone https://github.com/owen-od/filmophile`
 
@@ -56,9 +56,9 @@ The application currently includes the below features:
 
 - View sample of top, upcoming and popular movies on movie sliders on home page.
 - View latest curated articles/features on home page.
-- Read curated articles/content. View and navigate to movies associated with articles/content. 
-- View/navigate to associated articles/content. 
-- View all top, upcoming and popular movies on individual pages
+- Read curated articles/content. View and navigate to movies associated with articles/content from article page. 
+- View/navigate to associated articles from article page. 
+- View all top, upcoming and popular movies on individual movie pages. 
 - Navigate through top, upcoming and popular movies by page (which brings user back to top when page changed). 
 - Search for movies based on text input.
 - Sort movies based on a number of criteria, such as rating (asc and desc), release date (asc and desc), title. 
@@ -82,15 +82,13 @@ The below project image gives an example of the UI of the project. The applicati
 
 ## References
 
-Below are some further references to resources consulting during development. 
+Below are some further references to resources consulted during development. 
 
 - Movie Slider: [link](https://react-slick.neostack.com/docs/get-started)
   
 - Text overflow: [link](https://stackoverflow.com/questions/63592567/material-ui-text-ellipsis-after-two-line)
   
-- Home page carousel
-  - [link](https://www.npmjs.com/package/react-responsive-carousel)
-  - [link](https://www.youtube.com/watch?v=EBCdyQ_HFMo&list=PLs0RSZipvGCQT-4MXO0bssf_mXCq3VfQu&index=2&ab_channel=EdRoh)
+- Home page carousel: [link](https://www.npmjs.com/package/react-responsive-carousel); [link](https://www.youtube.com/watch?v=EBCdyQ_HFMo&list=PLs0RSZipvGCQT-4MXO0bssf_mXCq3VfQu&index=2&ab_channel=EdRoh)
   
 - Comment Box: [link](https://codesandbox.io/s/comment-box-with-material-ui-10p3c?file=/src/index.js:0-7705)
 
@@ -106,9 +104,7 @@ Below are some further references to resources consulting during development.
   
 - Additional MUI sample components: [link](https://mui.com/material-ui/getting-started/templates/)
 
-- Firebase 
-  - [link](https://www.youtube.com/watch?v=PJCr_aoOv68&t=2424s&ab_channel=CodeCommerce)
-  - [link](https://www.youtube.com/watch?v=drF8HbnW87w&ab_channel=CodeCommerce)
+- Firebase: [link](https://www.youtube.com/watch?v=PJCr_aoOv68&t=2424s&ab_channel=CodeCommerce); [link](https://www.youtube.com/watch?v=drF8HbnW87w&ab_channel=CodeCommerce)
   
 ## Project demo
 
