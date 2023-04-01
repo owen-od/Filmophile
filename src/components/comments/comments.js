@@ -43,7 +43,7 @@ export default function Comment(props) {
       incrementCommentLikes(props.movieId, index, comment.id);
       setTimeout(() => {
         setIsButtonDisabled(false);
-      }, 1000);
+      }, 2000);
     }
   };
   const handleRemoveFromLikes = () => {
@@ -52,7 +52,7 @@ export default function Comment(props) {
       decreaseCommentLikes(props.movieId, index, comment.id);
       setTimeout(() => {
         setIsButtonDisabled(false);
-      }, 1000);
+      }, 2000);
     }
   };
 
