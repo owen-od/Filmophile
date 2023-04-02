@@ -79,7 +79,7 @@ const StreamingDetails = ({ movie }) => {
         </Typography>
         <Box>
           {providers.includes("Netflix") && (
-            <IconButton sx={{ color: "red" }}>
+            <IconButton sx={{ color: "red" }} data-testid="netflix-button">
               <RiNetflixFill />
             </IconButton>
           )}
@@ -110,7 +110,7 @@ const StreamingDetails = ({ movie }) => {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleClose} data-testid="close-modal">Close</Button>
         </DialogActions>
       </Dialog>
     </>
