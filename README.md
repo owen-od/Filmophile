@@ -111,8 +111,8 @@ Below are some further references to resources consulted during development.
   
 - Additional MUI sample components: [link](https://mui.com/material-ui/getting-started/templates/)
 
-- Firebase: [link](https://www.youtube.com/watch?v=PJCr_aoOv68&t=2424s&ab_channel=CodeCommerce); [link](https://www.youtube.com/watch?v=drF8HbnW87w&ab_channel=CodeCommerce)
+- Firebase: [link](https://www.youtube.com/watch?v=PJCr_aoOv68&t=2424s&ab_channel=CodeCommerce); [link](https://www.youtube.com/watch?v=drF8HbnW87w&ab_channel=CodeCommerce); [link](https://www.youtube.com/watch?v=PKwu15ldZ7k&ab_channel=WebDevSimplified); [link](https://www.youtube.com/watch?v=x62aBvnRCKw&ab_channel=CodeCommerce)
   
 ## Project demo
 
-A video demo of the project is available on Youtube at the following url [url]
+A video demo of the project is available on Youtube at the following url [link](https://youtu.be/ejVU74tAG0g)
