@@ -115,4 +115,4 @@ Below are some further references to resources consulted during development.
   
 ## Project demo
 
-A video demo of the project is available on Youtube at the following url [link](https://youtu.be/ejVU74tAG0g)
+A video demo of the project is available on Youtube at the following url: [link](https://youtu.be/ejVU74tAG0g)
